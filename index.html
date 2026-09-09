@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3M 장갑 셀렉션 가이드</title>
+<style>
+:root{
+  --red:#e3000f; --red-dark:#b8000c;
+  --bg:#f8f9fa; --card:#ffffff; --text:#212529; --sub:#6c757d; --line:#dee2e6;
+  --b2b:#1d5bd8; --b2b-dark:#1548ad;
+  --ecom:#1e9e50; --ecom-dark:#177c3f;
+  --event:#e3000f;
+  --sg:#e3000f; --cg:#495057;
+}
+*{box-sizing:border-box}
+body{
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,Roboto,'Noto Sans KR',sans-serif;
+  background:var(--bg); color:var(--text); margin:0; padding:16px;
+  display:flex; justify-content:center; min-height:100vh;
+}
+.container{
+  background:var(--card); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.06);
+  width:100%; max-width:650px; padding:24px 22px 30px; text-align:center; position:relative;
+  height:fit-content;
+}
+.header{display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:22px; min-height:40px; position:relative}
+.logo{font-size:28px; font-weight:900; color:var(--red); letter-spacing:-1px; margin:0; position:absolute; left:50%; transform:translateX(-50%)}
+.nav-btn{background:none; border:none; font-size:14px; font-weight:600; color:var(--sub); cursor:pointer; padding:8px 10px; border-radius:8px; z-index:2}
+.nav-btn:hover{background:#f1f3f5; color:var(--text)}
+.nav-btn.hidden{visibility:hidden}
+
+/* start */
+.start-wrap{padding:34px 0 40px; animation:fadeIn .4s ease}
+.start-title{font-size:28px; font-weight:800; line-height:1.35; letter-spacing:-.5px; margin:0 0 14px; word-break:keep-all}
+.start-title .hl{color:var(--red)}
+.start-desc{font-size:16px; color:var(--sub); line-height:1.65; margin:0 0 34px; word-break:keep-all}
+.big-btn{background:var(--red); color:#fff; border:none; border-radius:12px; padding:18px 38px; font-size:17px; font-weight:700; cursor:pointer; box-shadow:0 8px 20px rgba(227,0,15,.22); transition:all .25s}
+.big-btn:hover{background:var(--red-dark); transform:translateY(-2px)}
+
+/* question */
+.q-wrap{animation:fadeIn .35s ease}
+.q-step{font-size:13px; font-weight:700; color:var(--red); letter-spacing:.5px; margin-bottom:10px}
+.q-title{font-size:21px; font-weight:800; line-height:1.4; margin:0 0 24px; word-break:keep-all; letter-spacing:-.3px}
+.opts{display:flex; flex-direction:column; gap:12px}
+.opt{background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:16px 18px; font-size:15.5px; font-weight:600; line-height:1.5; cursor:pointer; text-align:left; transition:all .18s; word-break:keep-all; color:var(--text)}
+.opt:hover{border-color:var(--red); background:#fff5f5; transform:translateY(-1px)}
+.opt .tag{display:block; font-size:12.5px; font-weight:500; color:var(--sub); margin-top:4px}
+
+/* result */
+.r-wrap{animation:fadeIn .4s ease; text-align:left}
+.r-head{text-align:center; margin-bottom:6px}
+.r-eyebrow{font-size:14px; color:var(--sub); margin:0 0 6px}
+.r-name{font-size:27px; font-weight:900; letter-spacing:-.5px; margin:0}
+.r-name.sg{color:var(--sg)}
+.r-name.cg{color:var(--cg)}
+.sg-badge{display:inline-block; background:var(--red); color:#fff; font-size:11.5px; font-weight:800; letter-spacing:.6px; border-radius:20px; padding:4px 12px; margin-bottom:8px}
+.r-img{width:200px; height:200px; margin:16px auto; border-radius:14px; background:#f1f3f5 url() center/contain no-repeat; display:flex; align-items:center; justify-content:center; color:#adb5bd; font-size:13px; font-weight:600; overflow:hidden}
+.r-img img{width:100%; height:100%; object-fit:contain; display:block}
+.r-desc{background:#f8f9fa; border-radius:12px; padding:16px 18px; margin:14px 0}
+.r-desc li{font-size:14.5px; line-height:1.65; margin:0 0 8px; word-break:keep-all; color:#343a40}
+.r-desc li:last-child{margin-bottom:0}
+.r-desc ul{margin:0; padding-left:18px}
+.sec{margin:18px 0}
+.sec-t{font-size:14px; font-weight:800; color:var(--text); margin:0 0 10px; text-align:center}
+.chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
+.chip{background:#212529; color:#fff; font-size:12.5px; font-weight:600; border-radius:20px; padding:6px 13px}
+.chip.cert{background:#fff; color:#212529; border:1.5px solid #212529; font-weight:700}
+.cert-marks{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center}
+.cert-mark{display:flex; flex-direction:column; align-items:center; gap:3px}
+.cert-mark img{height:46px; width:auto; display:block}
+.cert-mark .cert-cap{font-size:10.5px; color:var(--sub); font-weight:600}
+.colors{font-size:14px; color:#343a40; text-align:center; line-height:1.6}
+.notice{background:#fff8e6; border:1.5px solid #ffd043; border-radius:12px; padding:14px 16px; font-size:13px; line-height:1.65; color:#6b5300; margin:18px 0; word-break:keep-all}
+.notice b{color:#8a6d00}
+.buy-area{display:flex; flex-direction:column; gap:10px; margin:22px 0 4px}
+.buy-btn{display:block; width:100%; border:none; border-radius:12px; padding:16px; font-size:16px; font-weight:800; color:#fff; cursor:pointer; text-decoration:none; text-align:center; transition:all .2s}
+.buy-btn.b2b{background:var(--b2b)} .buy-btn.b2b:hover{background:var(--b2b-dark)}
+.buy-btn.ecom{background:var(--ecom)} .buy-btn.ecom:hover{background:var(--ecom-dark)}
+.buy-btn.event{background:var(--event)} .buy-btn.event:hover{background:var(--red-dark)}
+.retry{background:none; border:none; color:var(--sub); font-size:14px; font-weight:600; text-decoration:underline; cursor:pointer; margin:18px auto 0; display:block}
+
+/* detail page (A+ content) */
+.detail-sec{margin:14px 0 4px}
+.detail-toggle{display:block; width:100%; background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:14px; font-size:15px; font-weight:700; color:var(--text); cursor:pointer; transition:all .18s}
+.detail-toggle:hover{border-color:var(--red); color:var(--red)}
+.detail-body{display:none; margin-top:12px; border-radius:12px; overflow:hidden}
+.detail-body.open{display:block}
+.detail-body img{width:100%; display:block}
+.detail-placeholder{background:#f1f3f5; border-radius:12px; padding:26px 16px; text-align:center; color:#adb5bd; font-size:13px; font-weight:600}
+
+/* sub product (리얼터치) */
+.sub-card{border:1.5px solid var(--line); border-radius:14px; padding:18px; margin-top:26px}
+.sub-label{font-size:12.5px; font-weight:800; color:var(--sub); letter-spacing:.5px; margin-bottom:6px; text-align:center}
+.sub-card .r-name{font-size:21px}
+
+@keyframes fadeIn{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+@media (max-width:480px){
+  .container{padding:20px 16px 26px}
+  .start-title{font-size:24px}
+  .q-title{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <button class="nav-btn hidden" id="backBtn" onclick="goBack()">&#8592; 이전</button>
+    <h1 class="logo">3M</h1>
+    <button class="nav-btn hidden" id="homeBtn" onclick="goHome()">처음으로</button>
+  </div>
+  <div id="app"></div>
+</div>
+
+<script>
+/* ================= 설정 ================= */
+// 채널: URL 파라미터 ?ch= 로 구분 (b2b몰/ecom 임베드, mim, offline QR 등)
+// 예) ?ch=mim  ?ch=ecom  ?ch=offline_dealerA
+const CHANNEL = new URLSearchParams(location.search).get('ch') || 'direct';
+const IS_OFFLINE = CHANNEL.startsWith('offline');
+
+// 상세페이지(에이플러스) 이미지 수 — build_deploy.py 실행 시 자동 주입됨. {} 이면 플레이스홀더 표시
+const DETAIL_COUNTS = {"sg100": 11, "sg200": 10, "sg200t": 16, "nocut3": 15, "nocut5": 15, "nocut7": 16, "sgwinter": 9, "sgcool": 21, "sghot": 3, "cgbasic": 10, "cgreal": 13, "cgair": 4, "cgwinter": 4, "cgfit": 10, "cggimo": 13};
+
+// 트래킹 엔드포인트 (Cloudflare Worker 배포 후 URL 입력. 비워두면 콘솔 로그만)
+const TRACKING_ENDPOINT = '';
+
+// 이벤트 참여 폼 URL (오프라인 버전, 추후 확정)
+const EVENT_URL = '';
+
+function track(ev, data){
+  const payload = {ev, ch:CHANNEL, t:Date.now(), ...data};
+  if(TRACKING_ENDPOINT){
+    try{ navigator.sendBeacon(TRACKING_ENDPOINT, JSON.stringify(payload)); }catch(e){}
+  }
+  console.log('[track]', payload);
+}
+
+/* ================= 제품 데이터 (3M 제작요청서 26.08 기준) ================= */
+const P = {
+  sg100:{brand:'sg', name:'슈퍼그립 100',
+    desc:['슈퍼그립의 편안함과 가성비를 동시에 제공하는 다용도 NBR 장갑','개선된 원사를 적용하여 경량화 및 작업성 향상'],
+    certs:['EN388 4X21A','ANSI A1','CE인증'],
+    uses:['산업 및 안전 현장','일반 및 레저 활동'],
+    funcs:['통기성','경량성'],
+    colors:'회색, 블루',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710113250', ecom:''},
+  sg200:{brand:'sg', name:'슈퍼그립 200',
+    desc:['누적 판매량 1억장을 돌파한 명실상부한 작업용 NBR 장갑의 대표 제품','스판덱스 원사를 적용하여 최상의 착용감과 작업성을 보장하는 최고의 NBR장갑','우수한 형상기억 특성과 통기성을 갖춘 원단으로 장시간 작업에도 피로도 최소화'],
+    certs:['EN388 4X31A','ANSI A1','CE인증','더마테스트','오코텍스 스탠다드 100'],
+    uses:['차량 정비 및 관리','기계 부품 작업','정밀 부품 조립'],
+    funcs:['그립력','내구성','통기성','밀착감','유연성'],
+    colors:'오렌지, 핑크, 그린, 민트, 회색, 진회색, 검정',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709188897', ecom:''},
+  sg200t:{brand:'sg', name:'슈퍼그립 200 터치',
+    desc:['슈퍼그립 200의 착용감 그대로 터치 성능을 강화한 프리미엄 NBR 장갑','외부 코팅이 아닌 도전성 원사를 적용해 작업 중 마찰에도 터치 성능 저하 방지','터치기기 사용과 메시지 입력시 장갑 착용 상태에서 편리한 조작 가능'],
+    certs:['EN388 4X31A','ANSI A1','CE인증'],
+    uses:['스마트 기기 조작 작업 환경'],
+    funcs:['전도성(터치)','그립력','내구성','통기성'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709189116', ecom:''},
+  sgcool:{brand:'sg', name:'슈퍼그립 쿨',
+    desc:['UV차단, 통기성, 냉감성을 극대화한 NY-SHELRON® 원단이 적용된 장갑','얇지만 강력한 내구성으로 장시간 시원한 착용감 제공','탁월한 그립력과 통기성으로 더욱 쾌적하고 편안한 작업성 보장'],
+    certs:['EN388 4X21A','ANSI A1','CE인증','NY-SHELRON®'],
+    uses:['한여름 작업 환경'],
+    funcs:['UV 차단','통기성','냉감성','흡한속건'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710303682', ecom:''},
+  sgwinter:{brand:'sg', name:'슈퍼그립 윈터',
+    desc:['겨울 작업에 최적화된 보온 기능성 장갑','기모와 플리스 소재를 사용하여 부드럽고 포근한 착용감을 제공','신축성 있는 소재와 손목 밀착 설계로 편안한 착용감과 뛰어난 보온성 유지'],
+    certs:['EN388 4X21A','ANSI A1','CE인증'],
+    uses:['겨울 작업 환경'],
+    funcs:['유연성','보온성','그립력','밀착감'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710181359', ecom:''},
+  sghot:{brand:'sg', name:'슈퍼그립 핫',
+    desc:['뛰어난 보온성과 우수한 작업성을 갖춘 겨울용 장갑','균일하게 기모 처리된 내피로 탁월한 보온성과 부드러운 착용감 제공','겨울 장갑임에도 슈퍼그립 특유의 뛰어난 그립감으로 작업성이 우수함'],
+    certs:['EN388 2X41B','ANSI A2','CE인증'],
+    uses:['혹한기 작업 환경'],
+    funcs:['보온성','내한성','그립력'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710851970', ecom:''},
+  nocut3:{brand:'sg', name:'슈퍼그립 노컷3', nocut:true,
+    desc:['EN388:2016 버전 B등급과 ANSI 등급 2 인증을 받은 고성능 베임방지 기능성 장갑','강철보다 15배 강력한 Dyneema® 원사 적용으로 고강도 절단 저항성 확보','베임방지 기능성 장갑이지만, 경량화와 편안한 착용감으로 작업 효율성 증대'],
+    certs:['EN388 4X43B','ANSI A2','CE인증','Dyneema®'],
+    uses:['베임 위험이 있는 작업 환경'],
+    funcs:['베임 방지','경량성','그립력'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709189781', ecom:''},
+  nocut5:{brand:'sg', name:'슈퍼그립 노컷5', nocut:true,
+    desc:['EN388:2016 버전 E등급과 ANSI 등급 5 인증을 받은 고성능 베임방지 기능성 장갑','강철보다 15배 강력한 Dyneema® 원사 적용으로 고강도 절단 저항성 확보','절단작업이나 날카로운 자재를 취급하는 작업에 적합'],
+    certs:['EN388 4X43E','ANSI A5','CE인증','Dyneema®'],
+    uses:['베임 위험이 있는 작업 환경'],
+    funcs:['베임 방지','내구성','그립력'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709191498', ecom:''},
+  nocut7:{brand:'sg', name:'슈퍼그립 노컷7', nocut:true,
+    desc:['EN388:2016 버전 F등급과 ANSI 등급 7 인증을 받은 고성능 베임방지 기능성 장갑','방탄복에도 적용되는 초고분자량 폴리에틸렌(UHMWPE) 재질의 원사와 텅스텐 원사를 함께 적용하여 절단방지 성능 업그레이드'],
+    certs:['EN388 4X43F','ANSI A7','CE인증'],
+    uses:['베임 위험이 있는 작업 환경'],
+    funcs:['베임 방지','내구성','그립력','정밀작업','밀착감'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1787104454', ecom:''},
+  cgbasic:{brand:'cg', name:'컴포트그립 기본형',
+    desc:['내 손처럼 자유로운 움직임을 구현한 다용도 장갑','땀은 배출하고 공기는 유입하는 우수한 통기성으로 착용 내내 쾌적함 유지','내구성이 뛰어나 세탁 후에도 반복 사용 가능'],
+    certs:['EN388 3X31A','ANSI A1'],
+    uses:['일반작업','조립/부품 작업','제조 및 건설 관련 사업'],
+    funcs:['착용감','유연성','통기성','내구성'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710255799', ecom:''},
+  cgfit:{brand:'cg', name:'컴포트그립 핏',
+    desc:['손에 딱 맞는 착용감과 뛰어난 신축성을 바탕으로 정밀 작업에 최적화된 장갑','스판덱스와 고신축 폴리에스터 소재를 사용하여 편안한 착용감을 제공','가벼운 소재와 유연한 구조로 장시간 작업에도 편안함'],
+    certs:['EN388 4X21A','ANSI A1'],
+    uses:['차량 정비 및 관리','기계 부품 작업','정밀 부품 조립'],
+    funcs:['정밀작업','경량성','밀착감'],
+    colors:'검정, 회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709343734', ecom:''},
+  cgair:{brand:'cg', name:'컴포트그립 에어',
+    desc:['더운 작업 환경이나 장시간 사용에 이상적인 장갑','장시간 착용에도 쾌적한 착용감','가볍고 통기성이 뛰어난 소재로 땀 차지 않는 산뜻함'],
+    certs:['EN388 3X21A','ANSI A1'],
+    uses:['한여름 정밀 작업 환경'],
+    funcs:['통기성','경량성','정밀작업'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710844064', ecom:''},
+  cgwinter:{brand:'cg', name:'컴포트그립 윈터',
+    desc:['한겨울 추위에도 따뜻하고 편안한 겨울용 장갑','우수한 통기성과 방풍성이 뛰어나 따뜻한 온도를 지속적으로 유지'],
+    certs:[], /* 인증서 없음 (3M 확인 26.08) */
+    uses:['다용도 작업 환경'],
+    funcs:['보온성','착용감'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710401288', ecom:''},
+  cgreal:{brand:'cg', name:'컴포트그립 리얼터치',
+    desc:['한겨울 추위에도 터치가 가능한 실용적인 겨울용 장갑','따뜻한 기모 원사가 적용되어 손끝까지 보온 효과 제공','다섯 손가락 모두 장갑을 벗지 않고 스마트 기기 조작 가능'],
+    certs:['EN388 2X21A','ANSI A1'],
+    uses:['스마트 기기 조작 환경'],
+    funcs:['전도성(터치)','보온성'],
+    colors:'검정, 회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709989859', ecom:''},
+  cggimo:{brand:'cg', name:'컴포트그립 혹한기기모',
+    desc:['강력한 보온성과 방풍성을 갖춘 혹한기용 장갑','차가운 공기의 유입을 막아주어 추운 날씨에도 안정적인 보온 효과를 제공','따뜻한 기모 원사와 보온성이 뛰어난 플리스 소재가 적용되어 손끝 시림 방지'],
+    certs:['EN388 2X41B','ANSI A2'],
+    uses:['혹한기 작업 환경'],
+    funcs:['착용감','보온성','내한성'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710519483', ecom:''}
+};
+
+/* ================= 질문 트리 (3M 제작요청서 확정안) ================= */
+const T = {
+  industry:{step:'STEP 1', q:'현재 주로 종사하시는 산업군이나\n작업 현장은 어디인가요?', opts:[
+    {label:'물류 / 유통', tag:'택배, 운송, 창고, MRO 등', next:'logi'},
+    {label:'건설 / 토목', tag:'건축 현장, 전기, 설비 등', next:'const'},
+    {label:'일반 산업 / 일상', tag:'제조, 농업, DIY, 캠핑 등', next:'general'},
+    {label:'중공업 / 안전', tag:'금속 가공, 방검 작업, 안전 관리 등', next:'heavy'}
+  ]},
+  logi:{step:'STEP 2', q:'[물류/유통] 작업 중 가장 많이 겪는 상황이나\n필요한 기능은 무엇인가요?', opts:[
+    {label:'야외 하역이나 냉동창고 작업 등 고온/저온 환경', next:'r1'},
+    {label:'박스 해체, 커터칼 사용 등 베임 방지 기능', next:'r2'},
+    {label:'일반적인 상하차 및 박스 운반 등 거친 작업', next:'r3'}
+  ]},
+  const:{step:'STEP 2', q:'[건설/토목] 현장에서 가장 우선적으로\n대비해야 하는 요소는 무엇인가요?', opts:[
+    {label:'철근, 유리 등으로부터의 강한 베임 위험', next:'r2'},
+    {label:'폭염이나 혹한 등 극심한 날씨 변화', next:'r1'},
+    {label:'도면 확인, 정밀 작업 등 세밀한 손끝 감각', next:'r3'},
+    {label:'벽돌, 시멘트 등을 다루는 강도 높은 거친 작업', next:'r3'}
+  ]},
+  general:{step:'STEP 2', q:'[일반/일상] 작업의 주요 특징이나\n가장 중요하게 생각하는 점은 무엇인가요?', opts:[
+    {label:'야외 작업이나 캠핑 등 계절(온도)의 영향을 많이 받음', next:'r1'},
+    {label:'기계 조립, 부품 체결 등 얇은 밀착감과 맨손 같은 느낌', next:'r3'},
+    {label:'유리, 철판 등 베임 위험 방지', next:'r2'},
+    {label:'공방, DIY, 레저 등 일상 다목적 장갑', next:'r3'}
+  ]},
+  heavy:{step:'STEP 2', q:'[중공업/안전] 안전과 작업 효율을 위해\n가장 필수적인 기능은 무엇인가요?', opts:[
+    {label:'금속 가공 등 베임 방지', next:'r2'},
+    {label:'극저온/고온 환경이나 야외 작업이 잦음', next:'r1'},
+    {label:'내구성과 그립력', next:'r3'}
+  ]},
+  /* Route 1. Seasonal */
+  r1:{step:'STEP 3', q:'주로 어떤 계절 혹은 기온에서\n작업하시나요?', opts:[
+    {label:'여름철 야외 혹은 고온의 땀이 많이 나는 환경', next:'r1_summer'},
+    {label:'일반적인 겨울철 야외 현장', next:'r1_winter'},
+    {label:'혹한기 겨울 혹은 냉동창고 등의 극저온 환경', next:'r1_cold'}
+  ]},
+  r1_summer:{step:'STEP 4', q:'어떤 소재의 장갑을 선호하시나요?', opts:[
+    {label:'특수 냉감 소재로 땀이 차도 즉각적인 쿨링 효과', result:'sgcool'},
+    {label:'얇은 소재로 산뜻한 통기성', result:'cgair'}
+  ]},
+  r1_winter:{step:'STEP 4', q:'겨울용 장갑에서 더 중시하는\n성능은 무엇인가요?', opts:[
+    {label:'두툼하고 푹신한 방한력', result:'cgwinter'},
+    {label:'적절한 방한력과, 스판 소재로 둔탁함 없이 쫀쫀한 밀착감 보유', result:'sgwinter'}
+  ]},
+  r1_cold:{step:'STEP 4', q:'혹한기용 장갑에서 어떤 착용감을\n선호하시나요?', opts:[
+    {label:'두꺼운 둔탁함 없이 손에 감기는 정밀한 밀착감', result:'sghot'},
+    {label:'두툼하게 한기를 막아주는 편안한 쿠션감', result:'cggimo'}
+  ]},
+  /* Route 2. No Cut */
+  r2:{step:'STEP 3', q:'작업 중 마주하시는 베임 위험 수준은\n어느 정도인가요?', opts:[
+    {label:'일반 커터칼이나 긁힘 수준', result:'nocut3'},
+    {label:'가정용 부엌칼이나 얇은 철판 단면 수준', result:'nocut5'},
+    {label:'공업용 커터 수준', result:'nocut7'}
+  ]},
+  /* Route 3. General */
+  r3:{step:'STEP 3', q:'작업 중, 스마트기기 화면을 터치해야 할 일이\n잦으신가요?', opts:[
+    {label:'네, 수시로 화면을 확인하고 조작해야 해요.', result:'sg200t'},
+    {label:'아니요, 굳이 필요하지 않아요.', next:'r3_feel'}
+  ]},
+  r3_feel:{step:'STEP 4', q:'장갑을 착용했을 때\n어떤 느낌을 더 선호하시나요?', opts:[
+    {label:'손의 압박감을 덜어주는 여유로운 핏', next:'r3_loose'},
+    {label:'손에 꽉 맞아 헛돌지 않고 쫀쫀한 밀착감', next:'r3_tight'}
+  ]},
+  r3_loose:{step:'STEP 5', q:'작업 효율을 극대화할 원단(소재)의 특성 중\n어떤 것을 선호하시나요?', opts:[
+    {label:'[폴리+스판] 유연하게 늘어나 답답함 없이 가벼운 신축성 원단', result:'cgfit'},
+    {label:'[100% 나일론] 거친 마찰에도 손을 든든하게 보호하는 탄탄한 원단', result:'cgbasic'}
+  ]},
+  r3_tight:{step:'STEP 5', q:'작업 효율을 극대화할 원단(소재)의 특성 중\n어떤 것을 선호하시나요?', opts:[
+    {label:'[100% 폴리에스터] 소모가 빠른 현장에서 가볍게 쓰기 좋은 실용적 원단', result:'sg100'},
+    {label:'[나일론+스판덱스] 질긴 내구성과 빈틈없는 핏을 동시에 잡은 고탄성 원단', result:'sg200'}
+  ]}
+};
+
+/* 인증서 마크 이미지 파일명 매핑 — images/certs/ 폴더에 파일 넣으면 자동으로 마크 표시, 없으면 텍스트 뱃지 폴백 */
+function certFileId(label){
+  const map = {'CE인증':'ce','더마테스트':'dermatest','오코텍스 스탠다드 100':'oekotex100','NY-SHELRON®':'nyshelron','Dyneema®':'dyneema'};
+  if(map[label]) return map[label];
+  return label.toLowerCase().replace(/®/g,'').replace(/\s+/g,'_'); // EN388 4X31A → en388_4x31a, ANSI A1 → ansi_a1
+}
+function certMark(label){
+  const id = certFileId(label);
+  return `<span class="cert-mark">
+    <img src="images/certs/${id}.png" alt="${esc(label)}"
+      onerror="this.closest('.cert-mark').outerHTML='<span class=&quot;chip cert&quot;>${esc(label)}</span>'">
+    <span class="cert-cap">${esc(label)}</span>
+  </span>`;
+}
+
+const NOCUT_NOTICE = '⚠️ 3M 베임방지 장갑은 상해를 줄여주는 <b>보조 보호구</b>이며, 기계나 톱날을 완벽히 막아내는 절단/끼임 방지용 장비가 아니므로 안전에 유의하여 사용해 주세요.';
+
+/* ================= 렌더링 ================= */
+const app = document.getElementById('app');
+const backBtn = document.getElementById('backBtn');
+const homeBtn = document.getElementById('homeBtn');
+let history = [];
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function nl(s){return esc(s).replace(/\n/g,'<br>')}
+
+function renderStart(){
+  history = [];
+  updateNav(null);
+  app.innerHTML = `
+  <div class="start-wrap">
+    <h2 class="start-title">나에게 <span class="hl">딱 맞는 장갑</span> 찾기</h2>
+    <p class="start-desc">현재 종사하시는 산업과 작업 환경을 선택하시면,<br>가장 안전하고 편안한 최적의 3M 장갑을 추천해 드립니다.</p>
+    <button class="big-btn" onclick="startTest()">추천 테스트 시작하기</button>
+  </div>`;
+}
+
+function startTest(){
+  track('start');
+  goNode('industry');
+}
+
+function goNode(id, push=true){
+  if(push) history.push(id);
+  updateNav(id);
+  const node = T[id];
+  app.innerHTML = `
+  <div class="q-wrap">
+    <div class="q-step">${node.step}</div>
+    <h2 class="q-title">${nl(node.q)}</h2>
+    <div class="opts">
+      ${node.opts.map((o,i)=>`
+        <button class="opt" onclick="choose('${id}',${i})">${esc(o.label)}${o.tag?`<span class="tag">${esc(o.tag)}</span>`:''}</button>
+      `).join('')}
+    </div>
+  </div>`;
+  window.scrollTo({top:0});
+}
+
+function choose(nodeId, idx){
+  const opt = T[nodeId].opts[idx];
+  track('answer', {node:nodeId, pick:idx});
+  if(opt.result) showResult(opt.result);
+  else goNode(opt.next);
+}
+
+function buyButtons(p, pid){
+  if(IS_OFFLINE){
+    return `<a class="buy-btn event" href="${EVENT_URL||'#'}" onclick="track('event_click',{p:'${pid}'})">🎁 이벤트 참여하기</a>`;
+  }
+  let html = '';
+  if(p.b2b) html += `<a class="buy-btn b2b" href="${p.b2b}" target="_blank" rel="noopener" onclick="track('buy_click',{p:'${pid}',mall:'b2b'})">B2B몰에서 구매하러 가기</a>`;
+  if(p.ecom) html += `<a class="buy-btn ecom" href="${p.ecom}" target="_blank" rel="noopener" onclick="track('buy_click',{p:'${pid}',mall:'ecom'})">e-com에서 구매하러 가기</a>`;
+  return html;
+}
+
+function productBlock(pid, isSub=false){
+  const p = P[pid];
+  const sg = p.brand === 'sg';
+  return `
+  ${isSub ? `<div class="sub-label">함께 추천드리는 제품</div>` : ''}
+  <div class="r-head">
+    ${!isSub ? `<p class="r-eyebrow">고객님의 현장과 작업에 가장 완벽한 장갑은</p>` : ''}
+    ${sg && !isSub ? `<div><span class="sg-badge">3M BEST SELLER</span></div>` : ''}
+    <h2 class="r-name ${p.brand}">${esc(p.name)}</h2>
+  </div>
+  <div class="r-img" data-pid="${pid}">
+    <img src="images/${pid}.png" alt="${esc(p.name)}"
+      onerror="if(!this.dataset.j){this.dataset.j=1;this.src='images/${pid}.jpg';}else{this.parentNode.textContent='제품 이미지 준비 중';}">
+  </div>
+  <div class="r-desc"><ul>${p.desc.map(d=>`<li>${esc(d)}</li>`).join('')}</ul></div>
+  ${p.certs.length ? `<div class="sec"><p class="sec-t">인증서</p><div class="cert-marks">${p.certs.map(c=>certMark(c)).join('')}</div></div>` : ''}
+  <div class="sec"><p class="sec-t">작업 용도</p><div class="chips">${p.uses.map(u=>`<span class="chip">${esc(u)}</span>`).join('')}</div></div>
+  <div class="sec"><p class="sec-t">기능</p><div class="chips">${p.funcs.map(f=>`<span class="chip">${esc(f)}</span>`).join('')}</div></div>
+  <div class="sec"><p class="sec-t">제품 색상</p><p class="colors">${esc(p.colors)}</p></div>
+  ${p.nocut ? `<div class="notice">${NOCUT_NOTICE}</div>` : ''}
+  <div class="buy-area">${buyButtons(p, pid)}</div>
+  ${detailSection(pid)}`;
+}
+
+function detailSection(pid){
+  const n = DETAIL_COUNTS[pid];
+  if(n === undefined && Object.keys(DETAIL_COUNTS).length === 0){
+    // 빌드 전 검수용: 위치만 표시
+    return `<div class="detail-sec"><div class="detail-placeholder">상세페이지 영역 — 배포 버전에서 표시됩니다</div></div>`;
+  }
+  if(!n) return '';
+  let imgs = '';
+  for(let i=1;i<=n;i++) imgs += `<img src="images/detail/${pid}/${i}.webp" loading="lazy" alt="">`;
+  return `<div class="detail-sec">
+    <button class="detail-toggle" onclick="toggleDetail(this,'${pid}')">상세정보 펼쳐보기 ▾</button>
+    <div class="detail-body">${imgs}</div>
+  </div>`;
+}
+function toggleDetail(btn, pid){
+  const body = btn.nextElementSibling;
+  const open = body.classList.toggle('open');
+  btn.innerHTML = open ? '상세정보 접기 ▴' : '상세정보 펼쳐보기 ▾';
+  if(open) track('detail_open', {p:pid});
+}
+
+function showResult(pid){
+  history.push('RESULT:'+pid);
+  updateNav('RESULT');
+  track('result', {p:pid});
+  let html = `<div class="r-wrap">${productBlock(pid)}`;
+  // 컴포트그립 윈터 결과 → 리얼터치 동일 화면 서브 노출 (3M 확정 26.08)
+  if(pid === 'cgwinter'){
+    track('result_sub', {p:'cgreal'});
+    html += `<div class="sub-card">${productBlock('cgreal', true)}</div>`;
+  }
+  html += `<button class="retry" onclick="goHome()">다시 테스트하기</button></div>`;
+  app.innerHTML = html;
+  window.scrollTo({top:0});
+}
+
+function updateNav(cur){
+  const inFlow = history.length > 0;
+  backBtn.classList.toggle('hidden', !inFlow);
+  homeBtn.classList.toggle('hidden', !inFlow);
+}
+
+function goBack(){
+  history.pop();
+  if(history.length === 0){ renderStart(); return; }
+  const prev = history[history.length-1];
+  if(prev.startsWith('RESULT:')) showResult(prev.slice(7));
+  else goNode(prev, false);
+}
+
+function goHome(){ renderStart(); }
+
+renderStart();
+track('pageview');
+</script>
+</body>
+</html>
