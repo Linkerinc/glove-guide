@@ -120,6 +120,26 @@ body{
 const CHANNEL = new URLSearchParams(location.search).get('ch') || 'direct';
 const IS_OFFLINE = CHANNEL.startsWith('offline');
 
+/* ===== 채널별 구매 버튼 구성 =====
+   각 채널에서 노출할 버튼 종류와 순서. 첫 번째가 메인(위쪽) 버튼.
+   판매처가 늘어나면 BUTTON_DEFS에 정의 추가 + 제품 데이터에 링크 필드 추가 + 여기 순서에 넣으면 끝. */
+const BUTTON_DEFS = {
+  b2b:  {label:'B2B몰에서 구매하러 가기', cls:'b2b',  field:'b2b'},
+  ecom: {label:'e-com에서 구매하러 가기', cls:'ecom', field:'ecom'},
+  event:{label:'🎁 이벤트 참여하기',      cls:'event'}
+};
+const CHANNEL_BUTTONS = {
+  ecom:    ['ecom','b2b'],   // ecom 채널: ecom 버튼이 메인
+  mim:     ['b2b','ecom'],   // 몰인몰: B2B 메인
+  b2b:     ['b2b'],
+  offline: ['event'],        // 오프라인(QR): 이벤트 버튼만
+  default: ['b2b','ecom']    // 그 외(direct, review 등)
+};
+function channelButtons(){
+  if(IS_OFFLINE) return CHANNEL_BUTTONS.offline;
+  return CHANNEL_BUTTONS[CHANNEL] || CHANNEL_BUTTONS.default;
+}
+
 // 상세페이지(에이플러스) 이미지 수 — build_deploy.py 실행 시 자동 주입됨. {} 이면 플레이스홀더 표시
 const DETAIL_COUNTS = {"sg100": 11, "sg200": 10, "sg200t": 16, "nocut3": 15, "nocut5": 15, "nocut7": 16, "sgwinter": 9, "sgcool": 21, "sghot": 3, "cgbasic": 10, "cgreal": 13, "cgair": 4, "cgwinter": 4, "cgfit": 10, "cggimo": 13};
 
@@ -386,12 +406,17 @@ function choose(nodeId, idx){
 }
 
 function buyButtons(p, pid){
-  if(IS_OFFLINE){
-    return `<a class="buy-btn event" href="${EVENT_URL||'#'}" onclick="track('event_click',{p:'${pid}'})">🎁 이벤트 참여하기</a>`;
-  }
   let html = '';
-  if(p.b2b) html += `<a class="buy-btn b2b" href="${p.b2b}" target="_blank" rel="noopener" onclick="track('buy_click',{p:'${pid}',mall:'b2b'})">B2B몰에서 구매하러 가기</a>`;
-  if(p.ecom) html += `<a class="buy-btn ecom" href="${p.ecom}" target="_blank" rel="noopener" onclick="track('buy_click',{p:'${pid}',mall:'ecom'})">e-com에서 구매하러 가기</a>`;
+  for(const key of channelButtons()){
+    const d = BUTTON_DEFS[key];
+    if(!d) continue;
+    if(key === 'event'){
+      html += `<a class="buy-btn event" href="${EVENT_URL||'#'}" onclick="track('event_click',{p:'${pid}'})">${d.label}</a>`;
+    } else {
+      const link = p[d.field];
+      if(link) html += `<a class="buy-btn ${d.cls}" href="${link}" target="_blank" rel="noopener" onclick="track('buy_click',{p:'${pid}',mall:'${key}'})">${d.label}</a>`;
+    }
+  }
   return html;
 }
 
