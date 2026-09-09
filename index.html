@@ -84,8 +84,9 @@ body{
 .detail-sec{margin:14px 0 4px}
 .detail-toggle{display:block; width:100%; background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:14px; font-size:15px; font-weight:700; color:var(--text); cursor:pointer; transition:all .18s}
 .detail-toggle:hover{border-color:var(--red); color:var(--red)}
-.detail-body{display:none; margin-top:12px; border-radius:12px; overflow:hidden}
-.detail-body.open{display:block}
+.detail-body{position:relative; margin-bottom:10px; border-radius:12px; overflow:hidden}
+.detail-body.peek{max-height:420px}
+.detail-body.peek::after{content:''; position:absolute; bottom:0; left:0; right:0; height:130px; background:linear-gradient(rgba(255,255,255,0), #fff 92%); pointer-events:none}
 .detail-body img{width:100%; display:block}
 .detail-placeholder{background:#f1f3f5; border-radius:12px; padding:26px 16px; text-align:center; color:#adb5bd; font-size:13px; font-weight:600}
 
@@ -426,17 +427,18 @@ function detailSection(pid){
   }
   if(!n) return '';
   let imgs = '';
-  for(let i=1;i<=n;i++) imgs += `<img src="images/detail/${pid}/${i}.webp" loading="lazy" alt="">`;
+  for(let i=1;i<=n;i++) imgs += `<img src="images/detail/${pid}/${i}.webp" ${i>1?'loading="lazy"':''} alt="">`;
   return `<div class="detail-sec">
-    <button class="detail-toggle" onclick="toggleDetail(this,'${pid}')">상세정보 펼쳐보기 ▾</button>
-    <div class="detail-body">${imgs}</div>
+    <div class="detail-body peek">${imgs}</div>
+    <button class="detail-toggle" onclick="toggleDetail(this,'${pid}')">상세정보 더보기 ▾</button>
   </div>`;
 }
 function toggleDetail(btn, pid){
-  const body = btn.nextElementSibling;
-  const open = body.classList.toggle('open');
-  btn.innerHTML = open ? '상세정보 접기 ▴' : '상세정보 펼쳐보기 ▾';
+  const body = btn.previousElementSibling;
+  const open = !body.classList.toggle('peek');
+  btn.innerHTML = open ? '상세정보 접기 ▴' : '상세정보 더보기 ▾';
   if(open) track('detail_open', {p:pid});
+  else body.closest('.detail-sec').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function showResult(pid){
