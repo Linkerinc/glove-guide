@@ -140,8 +140,8 @@ function channelButtons(){
   return CHANNEL_BUTTONS[CHANNEL] || CHANNEL_BUTTONS.default;
 }
 
-// 상세페이지(에이플러스) 이미지 수 — build_deploy.py 실행 시 자동 주입됨. {} 이면 플레이스홀더 표시
-const DETAIL_COUNTS = {"sg100": 11, "sg200": 10, "sg200t": 16, "nocut3": 15, "nocut5": 15, "nocut7": 16, "sgwinter": 9, "sgcool": 21, "sghot": 3, "cgbasic": 10, "cgreal": 13, "cgair": 4, "cgwinter": 4, "cgfit": 10, "cggimo": 13};
+// 상세페이지(에이플러스) 파일 목록 — build_deploy.py 실행 시 자동 주입됨. {} 이면 플레이스홀더 표시
+const DETAIL_FILES = {"sg100": ["1.webp", "2.gif", "3.gif", "4.webp", "5.gif", "6.webp", "7.gif", "8.webp", "9.webp", "10.webp", "11.webp"], "sg200": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp"], "sg200t": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp", "16.webp"], "nocut3": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp"], "nocut5": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp"], "nocut7": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp", "16.webp"], "sgwinter": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp"], "sgcool": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp", "16.webp", "17.webp", "18.webp", "19.webp", "20.webp", "21.webp"], "sghot": ["1.webp", "2.webp", "3.webp"], "cgbasic": ["1.webp", "2.gif", "3.gif", "4.gif", "5.gif", "6.gif", "7.gif", "8.gif", "9.webp", "10.webp"], "cgreal": ["1.webp", "2.webp", "3.webp", "4.gif", "5.webp", "6.webp", "7.webp", "8.webp", "9.gif", "10.webp", "11.webp", "12.webp", "13.webp"], "cgair": ["1.webp", "2.webp", "3.webp", "4.webp"], "cgwinter": ["1.webp", "2.webp", "3.webp", "4.webp"], "cgfit": ["1.webp", "2.gif", "3.gif", "4.gif", "5.gif", "6.gif", "7.gif", "8.webp", "9.webp", "10.webp"], "cggimo": ["1.webp", "2.webp", "3.webp", "4.gif", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp"]};
 
 // 트래킹 엔드포인트 (Cloudflare Worker 배포 후 URL 입력. 비워두면 콘솔 로그만)
 const TRACKING_ENDPOINT = '';
@@ -445,14 +445,14 @@ function productBlock(pid, isSub=false){
 }
 
 function detailSection(pid){
-  const n = DETAIL_COUNTS[pid];
-  if(n === undefined && Object.keys(DETAIL_COUNTS).length === 0){
+  const files = DETAIL_FILES[pid];
+  if(files === undefined && Object.keys(DETAIL_FILES).length === 0){
     // 빌드 전 검수용: 위치만 표시
     return `<div class="detail-sec"><div class="detail-placeholder">상세페이지 영역 — 배포 버전에서 표시됩니다</div></div>`;
   }
-  if(!n) return '';
+  if(!files || !files.length) return '';
   let imgs = '';
-  for(let i=1;i<=n;i++) imgs += `<img src="images/detail/${pid}/${i}.webp" ${i>1?'loading="lazy"':''} alt="">`;
+  files.forEach((f,i)=>{ imgs += `<img src="images/detail/${pid}/${f}" ${i>0?'loading="lazy"':''} alt="">`; });
   return `<div class="detail-sec">
     <div class="detail-body peek">${imgs}</div>
     <button class="detail-toggle" onclick="toggleDetail(this,'${pid}')">상세정보 더보기 ▾</button>
