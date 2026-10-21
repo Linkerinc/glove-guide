@@ -39,7 +39,7 @@ h2 .q{font-weight:500; color:var(--sub); font-size:13px}
 /* 퍼널 바 */
 .fun{margin-top:14px}
 .frow{display:flex; align-items:center; gap:10px; margin:5px 0; font-size:12.5px}
-.frow .fl{width:74px; color:var(--sub); text-align:right}
+.frow .fl{width:100px; color:var(--sub); text-align:right; white-space:nowrap; flex-shrink:0}
 .frow .fb{height:16px; background:var(--blue); border-radius:3px; min-width:2px; transition:width .5s}
 .frow:last-child .fb{background:var(--blue-d)}
 .frow .fv{font-weight:700}
@@ -113,7 +113,7 @@ td.num,th.num{text-align:center}
   </div>
 
   <div class="card">
-    <h2>④ 채널 × 구매 클릭 <span class="q">— 결과 확인 후 구매 버튼까지 누른 사람</span></h2>
+    <h2>④ 채널 × ‘구매하러 가기’ 클릭 <span class="q">— 결과 확인 후 ‘구매하러 가기’ 버튼까지 누른 사람</span></h2>
     <div id="bmTable"></div>
   </div>
 
@@ -165,10 +165,10 @@ function render(d){
     <div class="kpi"><div class="l">유입</div><div class="v">${pv}</div><div class="s"></div></div>
     <div class="kpi"><div class="l">테스트 시작</div><div class="v">${st}</div><div class="s">${pct(st,pv)} 시작률</div></div>
     <div class="kpi"><div class="l">결과 도달</div><div class="v">${re}</div><div class="s">${pct(re,st)} 완주율</div></div>
-    <div class="kpi"><div class="l">구매 클릭</div><div class="v">${buy}</div><div class="s">${pct(buy,re)} 구매율 · B2B ${d.mall.b2b} / e-com ${d.mall.ecom}${evt?` · 이벤트 ${evt}`:''}</div></div>`;
+    <div class="kpi"><div class="l">‘구매하러 가기’ 클릭</div><div class="v">${buy}</div><div class="s">${pct(buy,re)} 클릭률 · B2B ${d.mall.b2b} / e-com ${d.mall.ecom}${evt?` · 이벤트 ${evt}`:''}</div></div>`;
 
   const mx = Math.max(pv,1);
-  document.getElementById('funnel').innerHTML = [['유입',pv],['테스트 시작',st],['결과 도달',re],['구매 클릭',buy]]
+  document.getElementById('funnel').innerHTML = [['유입',pv],['테스트 시작',st],['결과 도달',re],['구매하러 가기',buy]]
     .map(([l,v])=>`<div class="frow"><span class="fl">${l}</span><span class="fb" style="width:${Math.max(100*v/mx,0.5)}%"></span><span class="fv">${v}</span></div>`).join('');
 
   const tot = d.sg + d.cg;
@@ -179,7 +179,7 @@ function render(d){
   // 채널별 표
   const chs = Object.keys(d.ch).sort();
   const cmx = Math.max(...chs.map(c=>d.ch[c].pv), 1);
-  document.getElementById('chTable').innerHTML = chs.length ? `<table><tr><th>채널</th><th>유입</th><th class="num">시작</th><th class="num">완주</th><th class="num">구매클릭</th><th class="num">구매전환율</th></tr>` +
+  document.getElementById('chTable').innerHTML = chs.length ? `<table><tr><th>채널</th><th>유입</th><th class="num">시작</th><th class="num">완주</th><th class="num">구매하러 가기</th><th class="num">클릭 전환율</th></tr>` +
     chs.map(c=>{const o=d.ch[c]; const conv = c.indexOf('offline')===0 ? `이벤트 ${o.evt}` : (o.re ? Math.round(100*o.buy/o.re)+'%' : '–');
       return `<tr><td>${esc(c)}</td><td><div class="bar"><i style="width:${Math.max(100*o.pv/cmx,2)}px; max-width:120px"></i>${o.pv}</div></td><td class="num">${o.st}</td><td class="num">${o.re}</td><td class="num">${o.buy}</td><td class="num">${conv}</td></tr>`;}).join('') + '</table>'
     : '<div class="empty">아직 데이터가 없습니다</div>';
@@ -222,13 +222,13 @@ async function downloadXLSX(btn){
       [],
       ['■ 전체 퍼널'],
       ['유입', pv], ['테스트 시작', st, pctn(st,pv)+' 시작률'], ['결과 도달', re, pctn(re,st)+' 완주율'],
-      ['구매 클릭', buy, pctn(buy,re)+' 구매율'], ['— B2B몰', LAST.mall.b2b], ['— e-com', LAST.mall.ecom],
+      ['‘구매하러 가기’ 클릭', buy, pctn(buy,re)+' 클릭률'], ['— B2B몰', LAST.mall.b2b], ['— e-com', LAST.mall.ecom],
       ['이벤트 클릭', t.event_click||0], ['상세정보 펼침', t.detail_open||0],
       [],
       ['■ 슈퍼그립 : 컴포트그립', (LAST.sg+LAST.cg)? Math.round(100*LAST.sg/(LAST.sg+LAST.cg))+' : '+Math.round(100*LAST.cg/(LAST.sg+LAST.cg)) : '-', '목표 70 : 30'],
       [],
       ['■ 채널별 퍼널'],
-      ['채널','유입','시작','완주','구매클릭','이벤트클릭']
+      ['채널','유입','시작','완주','구매하러가기 클릭','이벤트클릭']
     ];
     const chs = Object.keys(LAST.ch).sort();
     chs.forEach(c=>{const o=LAST.ch[c]; sum.push([c,o.pv,o.st,o.re,o.buy,o.evt]);});
@@ -237,7 +237,7 @@ async function downloadXLSX(btn){
     sum.push(['제품', ...chs]);
     Object.keys(LAST.rm).forEach(p=> sum.push([pn(p), ...chs.map(c=>LAST.rm[p][c]||0)]));
     sum.push([]);
-    sum.push(['■ 채널 × 구매클릭']);
+    sum.push(['■ 채널 × 구매하러 가기 클릭']);
     sum.push(['제품', ...chs]);
     Object.keys(LAST.bm).forEach(p=> sum.push([pn(p), ...chs.map(c=>LAST.bm[p][c]||0)]));
     const ws1 = XLSX.utils.aoa_to_sheet(sum);
