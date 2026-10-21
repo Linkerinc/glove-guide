@@ -43,7 +43,7 @@ h2 .q{font-weight:500; color:var(--sub); font-size:13px}
 .frow .ft{flex:1; display:block}
 .frow .fb{display:block; height:16px; background:var(--blue); border-radius:3px; min-width:2px; transition:width .5s}
 .frow:last-child .fb{background:var(--blue-d)}
-.frow .fv{font-weight:700}
+.frow .fv{font-weight:700; min-width:52px; text-align:right; font-variant-numeric:tabular-nums; flex-shrink:0}
 
 table{width:100%; border-collapse:collapse; font-size:13px}
 th,td{border:1px solid #eceef0; padding:7px 9px; text-align:left}
@@ -129,6 +129,7 @@ const API = 'https://glove-tracking.dr78home.workers.dev/stats';
 const PNAME = {sg100:'슈퍼그립 100',sg200:'슈퍼그립 200',sg200t:'슈퍼그립 200 터치',sgcool:'슈퍼그립 쿨',sgwinter:'슈퍼그립 윈터',sghot:'슈퍼그립 핫',nocut3:'슈퍼그립 노컷3',nocut5:'슈퍼그립 노컷5',nocut7:'슈퍼그립 노컷7',cgbasic:'컴포트그립 기본형',cgfit:'컴포트그립 핏',cgair:'컴포트그립 에어',cgwinter:'컴포트그립 윈터',cgreal:'컴포트그립 리얼터치(함께소개)',cggimo:'컴포트그립 혹한기기모'};
 const pn = p => PNAME[p] || p;
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const fmt = n => Number(n || 0).toLocaleString('ko-KR');
 
 function login(){
   const k = document.getElementById('pw').value.trim();
@@ -163,14 +164,14 @@ function render(d){
   document.getElementById('upd2').textContent = '기준: ' + d.updated + ' (KST)';
 
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="l">유입</div><div class="v">${pv}</div><div class="s"></div></div>
-    <div class="kpi"><div class="l">테스트 시작</div><div class="v">${st}</div><div class="s">${pct(st,pv)} 시작률</div></div>
-    <div class="kpi"><div class="l">결과 도달</div><div class="v">${re}</div><div class="s">${pct(re,st)} 완주율</div></div>
-    <div class="kpi"><div class="l">‘구매하러 가기’ 클릭</div><div class="v">${buy}</div><div class="s">${pct(buy,re)} 클릭률 · B2B ${d.mall.b2b} / e-com ${d.mall.ecom}${evt?` · 이벤트 ${evt}`:''}</div></div>`;
+    <div class="kpi"><div class="l">유입</div><div class="v">${fmt(pv)}</div><div class="s"></div></div>
+    <div class="kpi"><div class="l">테스트 시작</div><div class="v">${fmt(st)}</div><div class="s">${pct(st,pv)} 시작률</div></div>
+    <div class="kpi"><div class="l">결과 도달</div><div class="v">${fmt(re)}</div><div class="s">${pct(re,st)} 완주율</div></div>
+    <div class="kpi"><div class="l">‘구매하러 가기’ 클릭</div><div class="v">${fmt(buy)}</div><div class="s">${pct(buy,re)} 클릭률 · B2B ${fmt(d.mall.b2b)} / e-com ${fmt(d.mall.ecom)}${evt?` · 이벤트 ${fmt(evt)}`:''}</div></div>`;
 
   const mx = Math.max(pv,1);
   document.getElementById('funnel').innerHTML = [['유입',pv],['테스트 시작',st],['결과 도달',re],['구매하러 가기',buy]]
-    .map(([l,v])=>`<div class="frow"><span class="fl">${l}</span><span class="ft"><span class="fb" style="width:${Math.max(100*v/mx,1)}%"></span></span><span class="fv">${v}</span></div>`).join('');
+    .map(([l,v])=>`<div class="frow"><span class="fl">${l}</span><span class="ft"><span class="fb" style="width:${Math.max(100*v/mx,1)}%"></span></span><span class="fv">${fmt(v)}</span></div>`).join('');
 
   const tot = d.sg + d.cg;
   document.getElementById('ratio').innerHTML = tot
@@ -182,7 +183,7 @@ function render(d){
   const cmx = Math.max(...chs.map(c=>d.ch[c].pv), 1);
   document.getElementById('chTable').innerHTML = chs.length ? `<table><tr><th>채널</th><th>유입</th><th class="num">시작</th><th class="num">완주</th><th class="num">구매하러 가기</th><th class="num">클릭 전환율</th></tr>` +
     chs.map(c=>{const o=d.ch[c]; const conv = c.indexOf('offline')===0 ? `이벤트 ${o.evt}` : (o.re ? Math.round(100*o.buy/o.re)+'%' : '–');
-      return `<tr><td>${esc(c)}</td><td><div class="bar"><i style="width:${Math.max(100*o.pv/cmx,2)}px; max-width:120px"></i>${o.pv}</div></td><td class="num">${o.st}</td><td class="num">${o.re}</td><td class="num">${o.buy}</td><td class="num">${conv}</td></tr>`;}).join('') + '</table>'
+      return `<tr><td>${esc(c)}</td><td><div class="bar"><i style="width:${Math.max(100*o.pv/cmx,2)}px; max-width:120px"></i>${fmt(o.pv)}</div></td><td class="num">${fmt(o.st)}</td><td class="num">${fmt(o.re)}</td><td class="num">${fmt(o.buy)}</td><td class="num">${conv}</td></tr>`;}).join('') + '</table>'
     : '<div class="empty">아직 데이터가 없습니다</div>';
 
   document.getElementById('rmTable').innerHTML = matrix(d.rm, chs);
