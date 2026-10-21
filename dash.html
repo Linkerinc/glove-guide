@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>장갑 셀렉션 가이드 — 실시간 리포트</title>
+<style>
+:root{--red:#e3000f; --blue:#378ADD; --blue-d:#185FA5; --bg:#f8f9fa; --card:#fff; --text:#212529; --sub:#6c757d; --line:#dee2e6}
+*{box-sizing:border-box}
+body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,Roboto,'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); margin:0; padding:20px 14px 60px; display:flex; justify-content:center}
+.wrap{width:100%; max-width:860px}
+.card{background:var(--card); border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,.05); padding:22px; margin-bottom:16px}
+h1{font-size:20px; margin:0; letter-spacing:-.3px}
+h1 .brand{color:var(--red); font-weight:900}
+.meta{font-size:12px; color:var(--sub); margin-top:4px}
+h2{font-size:15px; margin:0 0 14px; letter-spacing:-.2px}
+h2 .q{font-weight:500; color:var(--sub); font-size:13px}
+
+/* 로그인 */
+#gate{position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:10}
+.gate-box{background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.08); padding:38px 30px; width:100%; max-width:360px; text-align:center}
+.gate-box .brand{font-size:26px; font-weight:900; color:var(--red)}
+.gate-box p{font-size:14px; color:var(--sub); margin:8px 0 20px}
+.gate-box input{width:100%; border:1.5px solid var(--line); border-radius:10px; padding:13px 14px; font-size:15px; text-align:center; outline:none}
+.gate-box input:focus{border-color:var(--red)}
+.gate-box button{width:100%; margin-top:10px; background:var(--red); color:#fff; border:none; border-radius:10px; padding:13px; font-size:15px; font-weight:700; cursor:pointer}
+.gate-err{color:var(--red); font-size:13px; margin-top:10px; min-height:18px}
+
+/* KPI */
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+.kpi{background:var(--bg); border-radius:10px; padding:12px 14px}
+.kpi .l{font-size:12px; color:var(--sub)}
+.kpi .v{font-size:26px; font-weight:800; margin-top:2px}
+.kpi .s{font-size:11px; color:var(--sub); margin-top:2px; min-height:14px}
+.ratio{margin-top:12px; font-size:13px; color:var(--sub)}
+.ratio b{color:var(--text); font-size:15px}
+
+/* 퍼널 바 */
+.fun{margin-top:14px}
+.frow{display:flex; align-items:center; gap:10px; margin:5px 0; font-size:12.5px}
+.frow .fl{width:74px; color:var(--sub); text-align:right}
+.frow .fb{height:16px; background:var(--blue); border-radius:3px; min-width:2px; transition:width .5s}
+.frow:last-child .fb{background:var(--blue-d)}
+.frow .fv{font-weight:700}
+
+table{width:100%; border-collapse:collapse; font-size:13px}
+th,td{border:1px solid #eceef0; padding:7px 9px; text-align:left}
+th{background:#f4f6f8; font-weight:700; font-size:12.5px}
+td.num,th.num{text-align:center}
+.bar{display:flex; align-items:center; gap:6px}
+.bar i{display:block; height:11px; background:var(--blue); border-radius:2px; min-width:2px}
+.hm td.num{font-weight:600}
+.empty{color:var(--sub); font-size:13px; padding:10px 0}
+.foot{display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--sub)}
+.foot button{background:none; border:1px solid var(--line); border-radius:8px; padding:7px 14px; font-size:12.5px; cursor:pointer; color:var(--text)}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.card{padding:16px}}
+/* 인쇄(PDF 저장) 모드 */
+@media print{
+  body{background:#fff; padding:0; display:block}
+  .wrap{max-width:100%}
+  .card{box-shadow:none; border:1px solid #e3e5e8; break-inside:avoid; margin-bottom:10px; padding:14px 16px}
+  .no-print, #gate{display:none !important}
+  .fb, .bar i, .hm td{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+}
+.btns{display:flex; gap:8px}
+.btns button{background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; color:var(--text)}
+.btns button:hover{border-color:var(--red); color:var(--red)}
+.hdr{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+<div id="gate">
+  <div class="gate-box">
+    <div class="brand">3M</div>
+    <p>장갑 셀렉션 가이드 실시간 리포트<br>비밀번호를 입력하세요</p>
+    <input type="password" id="pw" placeholder="비밀번호" onkeydown="if(event.key==='Enter')login()">
+    <button onclick="login()">입장하기</button>
+    <div class="gate-err" id="gerr"></div>
+  </div>
+</div>
+
+<div class="wrap" id="app" style="display:none">
+  <div class="card">
+    <div class="hdr">
+      <div>
+        <h1><span class="brand">3M</span> 장갑 셀렉션 가이드 — 실시간 리포트</h1>
+        <div class="meta" id="upd"></div>
+      </div>
+      <div class="btns no-print">
+        <button onclick="window.print()">PDF 저장</button>
+        <button onclick="downloadXLSX(this)">엑셀 다운로드</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>① 전체 퍼널 <span class="q">— 몇 명이 들어와 어디까지 갔나</span></h2>
+    <div class="kpis" id="kpis"></div>
+    <div class="fun" id="funnel"></div>
+    <div class="ratio" id="ratio"></div>
+  </div>
+
+  <div class="card">
+    <h2>② 채널별 퍼널 <span class="q">— 어느 채널에서 왔고 얼마나 전환됐나</span></h2>
+    <div id="chTable"></div>
+  </div>
+
+  <div class="card">
+    <h2>③ 채널 × 결과 제품 <span class="q">— 어떤 결과가 나왔나 (진할수록 많음)</span></h2>
+    <div id="rmTable"></div>
+  </div>
+
+  <div class="card">
+    <h2>④ 채널 × 구매 클릭 <span class="q">— 결과 확인 후 구매 버튼까지 누른 사람</span></h2>
+    <div id="bmTable"></div>
+  </div>
+
+  <div class="card foot">
+    <span id="upd2"></span>
+    <button class="no-print" onclick="load(sessionStorage.getItem('gk'))">새로고침</button>
+  </div>
+</div>
+
+<script>
+const API = 'https://glove-tracking.dr78home.workers.dev/stats';
+const PNAME = {sg100:'슈퍼그립 100',sg200:'슈퍼그립 200',sg200t:'슈퍼그립 200 터치',sgcool:'슈퍼그립 쿨',sgwinter:'슈퍼그립 윈터',sghot:'슈퍼그립 핫',nocut3:'슈퍼그립 노컷3',nocut5:'슈퍼그립 노컷5',nocut7:'슈퍼그립 노컷7',cgbasic:'컴포트그립 기본형',cgfit:'컴포트그립 핏',cgair:'컴포트그립 에어',cgwinter:'컴포트그립 윈터',cgreal:'컴포트그립 리얼터치(함께소개)',cggimo:'컴포트그립 혹한기기모'};
+const pn = p => PNAME[p] || p;
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+function login(){
+  const k = document.getElementById('pw').value.trim();
+  if(!k) return;
+  document.getElementById('gerr').textContent = '확인 중...';
+  load(k);
+}
+
+async function load(key){
+  if(!key){ return; }
+  try{
+    const res = await fetch(API + '?key=' + encodeURIComponent(key));
+    const d = await res.json();
+    if(d.error){ document.getElementById('gerr').textContent = '비밀번호가 올바르지 않습니다'; return; }
+    sessionStorage.setItem('gk', key);
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    render(d);
+  }catch(e){
+    document.getElementById('gerr').textContent = '연결 실패 — 잠시 후 다시 시도하세요';
+  }
+}
+
+let LAST = null;
+function render(d){
+  LAST = d;
+  const t = d.t || {};
+  const pv = t.pageview||0, st = t.start||0, re = t.result||0, buy = t.buy_click||0, evt = t.event_click||0;
+  const pct = (a,b) => b ? Math.round(100*a/b) + '%' : '–';
+
+  document.getElementById('upd').textContent = '기준: ' + d.updated + ' (KST) · 자동 수집 데이터';
+  document.getElementById('upd2').textContent = '기준: ' + d.updated + ' (KST)';
+
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi"><div class="l">유입</div><div class="v">${pv}</div><div class="s"></div></div>
+    <div class="kpi"><div class="l">테스트 시작</div><div class="v">${st}</div><div class="s">${pct(st,pv)} 시작률</div></div>
+    <div class="kpi"><div class="l">결과 도달</div><div class="v">${re}</div><div class="s">${pct(re,st)} 완주율</div></div>
+    <div class="kpi"><div class="l">구매 클릭</div><div class="v">${buy}</div><div class="s">${pct(buy,re)} 구매율 · B2B ${d.mall.b2b} / e-com ${d.mall.ecom}${evt?` · 이벤트 ${evt}`:''}</div></div>`;
+
+  const mx = Math.max(pv,1);
+  document.getElementById('funnel').innerHTML = [['유입',pv],['테스트 시작',st],['결과 도달',re],['구매 클릭',buy]]
+    .map(([l,v])=>`<div class="frow"><span class="fl">${l}</span><span class="fb" style="width:${Math.max(100*v/mx,0.5)}%"></span><span class="fv">${v}</span></div>`).join('');
+
+  const tot = d.sg + d.cg;
+  document.getElementById('ratio').innerHTML = tot
+    ? `슈퍼그립 : 컴포트그립 = <b>${Math.round(100*d.sg/tot)} : ${Math.round(100*d.cg/tot)}</b> <span style="font-size:12px">(목표 70 : 30 · 함께소개 포함)</span>`
+    : '';
+
+  // 채널별 표
+  const chs = Object.keys(d.ch).sort();
+  const cmx = Math.max(...chs.map(c=>d.ch[c].pv), 1);
+  document.getElementById('chTable').innerHTML = chs.length ? `<table><tr><th>채널</th><th>유입</th><th class="num">시작</th><th class="num">완주</th><th class="num">구매클릭</th><th class="num">구매전환율</th></tr>` +
+    chs.map(c=>{const o=d.ch[c]; const conv = c.indexOf('offline')===0 ? `이벤트 ${o.evt}` : (o.re ? Math.round(100*o.buy/o.re)+'%' : '–');
+      return `<tr><td>${esc(c)}</td><td><div class="bar"><i style="width:${Math.max(100*o.pv/cmx,2)}px; max-width:120px"></i>${o.pv}</div></td><td class="num">${o.st}</td><td class="num">${o.re}</td><td class="num">${o.buy}</td><td class="num">${conv}</td></tr>`;}).join('') + '</table>'
+    : '<div class="empty">아직 데이터가 없습니다</div>';
+
+  document.getElementById('rmTable').innerHTML = matrix(d.rm, chs);
+  document.getElementById('bmTable').innerHTML = matrix(d.bm, chs);
+}
+
+function matrix(m, chs){
+  const prods = Object.keys(m);
+  if(!prods.length) return '<div class="empty">아직 데이터가 없습니다</div>';
+  const cols = chs.filter(c => prods.some(p => m[p][c]));
+  let max = 1;
+  prods.forEach(p => cols.forEach(c => { if((m[p][c]||0) > max) max = m[p][c]; }));
+  const cell = v => { if(!v) return '<td class="num" style="color:#ccc">·</td>';
+    const a = 0.12 + 0.78 * (v / max);
+    const fg = a > 0.55 ? '#fff' : '#042C53';
+    return `<td class="num" style="background:rgba(24,95,165,${a.toFixed(2)}); color:${fg}">${v}</td>`; };
+  prods.sort((a,b) => cols.reduce((s,c)=>s+(m[b][c]||0),0) - cols.reduce((s,c)=>s+(m[a][c]||0),0));
+  return `<table class="hm"><tr><th>제품</th>${cols.map(c=>`<th class="num">${esc(c)}</th>`).join('')}</tr>` +
+    prods.map(p=>`<tr><td>${esc(pn(p))}</td>${cols.map(c=>cell(m[p][c]||0)).join('')}</tr>`).join('') + '</table>';
+}
+
+async function downloadXLSX(btn){
+  const key = sessionStorage.getItem('gk');
+  if(!key || !LAST){ alert('데이터 로딩 후 이용해주세요'); return; }
+  const t0 = btn.textContent; btn.textContent = '생성 중...'; btn.disabled = true;
+  try{
+    const res = await fetch(API.replace('/stats','/export') + '?key=' + encodeURIComponent(key));
+    const ex = await res.json();
+    if(ex.error) throw new Error(ex.error);
+
+    const wb = XLSX.utils.book_new();
+
+    const t = LAST.t||{}, pv=t.pageview||0, st=t.start||0, re=t.result||0, buy=t.buy_click||0;
+    const pctn = (a,b)=> b? Math.round(100*a/b)+'%':'-';
+    const sum = [
+      ['장갑 셀렉션 가이드 — 성과 요약'],
+      ['기준', LAST.updated + ' (KST)'],
+      [],
+      ['■ 전체 퍼널'],
+      ['유입', pv], ['테스트 시작', st, pctn(st,pv)+' 시작률'], ['결과 도달', re, pctn(re,st)+' 완주율'],
+      ['구매 클릭', buy, pctn(buy,re)+' 구매율'], ['— B2B몰', LAST.mall.b2b], ['— e-com', LAST.mall.ecom],
+      ['이벤트 클릭', t.event_click||0], ['상세정보 펼침', t.detail_open||0],
+      [],
+      ['■ 슈퍼그립 : 컴포트그립', (LAST.sg+LAST.cg)? Math.round(100*LAST.sg/(LAST.sg+LAST.cg))+' : '+Math.round(100*LAST.cg/(LAST.sg+LAST.cg)) : '-', '목표 70 : 30'],
+      [],
+      ['■ 채널별 퍼널'],
+      ['채널','유입','시작','완주','구매클릭','이벤트클릭']
+    ];
+    const chs = Object.keys(LAST.ch).sort();
+    chs.forEach(c=>{const o=LAST.ch[c]; sum.push([c,o.pv,o.st,o.re,o.buy,o.evt]);});
+    sum.push([]);
+    sum.push(['■ 채널 × 결과 제품']);
+    sum.push(['제품', ...chs]);
+    Object.keys(LAST.rm).forEach(p=> sum.push([pn(p), ...chs.map(c=>LAST.rm[p][c]||0)]));
+    sum.push([]);
+    sum.push(['■ 채널 × 구매클릭']);
+    sum.push(['제품', ...chs]);
+    Object.keys(LAST.bm).forEach(p=> sum.push([pn(p), ...chs.map(c=>LAST.bm[p][c]||0)]));
+    const ws1 = XLSX.utils.aoa_to_sheet(sum);
+    ws1['!cols'] = [{wch:24},{wch:14},{wch:16},{wch:12},{wch:12},{wch:12}];
+    XLSX.utils.book_append_sheet(wb, ws1, '요약');
+
+    const raw = [['시간(KST)','이벤트','채널','제품','몰','질문노드','선택']];
+    (ex.rows||[]).forEach(r=>{
+      const k = new Date(new Date(r.ts).getTime() + 9*3600*1000).toISOString().slice(0,19).replace('T',' ');
+      raw.push([k, r.ev, r.ch, r.p, r.mall, r.node, r.pick]);
+    });
+    const ws2 = XLSX.utils.aoa_to_sheet(raw);
+    ws2['!cols'] = [{wch:20},{wch:12},{wch:18},{wch:10},{wch:8},{wch:12},{wch:6}];
+    XLSX.utils.book_append_sheet(wb, ws2, 'raw');
+
+    XLSX.writeFile(wb, 'glove_tracking_' + LAST.updated.slice(0,10) + '.xlsx');
+  }catch(e){
+    alert('다운로드 실패 — 잠시 후 다시 시도해주세요');
+  }finally{
+    btn.textContent = t0; btn.disabled = false;
+  }
+}
+
+// 세션에 키가 있으면 자동 입장
+if(sessionStorage.getItem('gk')) load(sessionStorage.getItem('gk'));
+</script>
+</body>
+</html>
