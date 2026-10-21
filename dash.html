@@ -40,7 +40,8 @@ h2 .q{font-weight:500; color:var(--sub); font-size:13px}
 .fun{margin-top:14px}
 .frow{display:flex; align-items:center; gap:10px; margin:5px 0; font-size:12.5px}
 .frow .fl{width:100px; color:var(--sub); text-align:right; white-space:nowrap; flex-shrink:0}
-.frow .fb{height:16px; background:var(--blue); border-radius:3px; min-width:2px; transition:width .5s}
+.frow .ft{flex:1; display:block}
+.frow .fb{display:block; height:16px; background:var(--blue); border-radius:3px; min-width:2px; transition:width .5s}
 .frow:last-child .fb{background:var(--blue-d)}
 .frow .fv{font-weight:700}
 
@@ -169,7 +170,7 @@ function render(d){
 
   const mx = Math.max(pv,1);
   document.getElementById('funnel').innerHTML = [['유입',pv],['테스트 시작',st],['결과 도달',re],['구매하러 가기',buy]]
-    .map(([l,v])=>`<div class="frow"><span class="fl">${l}</span><span class="fb" style="width:${Math.max(100*v/mx,0.5)}%"></span><span class="fv">${v}</span></div>`).join('');
+    .map(([l,v])=>`<div class="frow"><span class="fl">${l}</span><span class="ft"><span class="fb" style="width:${Math.max(100*v/mx,1)}%"></span></span><span class="fv">${v}</span></div>`).join('');
 
   const tot = d.sg + d.cg;
   document.getElementById('ratio').innerHTML = tot
