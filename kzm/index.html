@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://linkerinc.github.io/glove-guide/?ch=review -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>장갑을 맞춰라! | 3M 글러브 챌린지</title>
+<style>
+:root{
+  --red:#e3000f; --red-dark:#b8000c;
+  --bg:#f8f9fa; --card:#ffffff; --text:#212529; --sub:#6c757d; --line:#dee2e6;
+  --b2b:#1d5bd8; --b2b-dark:#1548ad;
+  --ecom:#1e9e50; --ecom-dark:#177c3f;
+  --event:#e3000f;
+  --sg:#e3000f; --cg:#495057;
+}
+*{box-sizing:border-box}
+body{
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,Roboto,'Noto Sans KR',sans-serif;
+  background:var(--bg); color:var(--text); margin:0; padding:16px;
+  display:flex; justify-content:center; min-height:100vh;
+}
+.container{
+  background:var(--card); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.06);
+  width:100%; max-width:650px; padding:24px 22px 30px; text-align:center; position:relative;
+  height:fit-content; margin-top:clamp(16px, 10vh, 120px);
+}
+.header{display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:22px; min-height:40px; position:relative}
+.logo-img{height:30px; width:auto; display:block; position:absolute; left:50%; transform:translateX(-50%); top:50%; translate:0 -50%}
+.nav-btn{background:none; border:none; font-size:14px; font-weight:600; color:var(--sub); cursor:pointer; padding:8px 10px; border-radius:8px; z-index:2}
+.nav-btn:hover{background:#f1f3f5; color:var(--text)}
+.nav-btn.hidden{visibility:hidden}
+
+/* start */
+.hero-marquee{overflow:hidden; margin:6px -22px 26px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.hero-track{display:flex; align-items:flex-end; width:max-content; animation:heroSlide 36s linear infinite}
+.hero-track img{height:82px; width:auto; margin-right:22px; object-fit:contain; mix-blend-mode:multiply}
+@keyframes heroSlide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.hero-track{animation:none}}
+@media (max-width:480px){.hero-marquee{margin-left:-16px; margin-right:-16px}.hero-track img{height:66px; margin-right:16px}}
+
+.start-wrap{padding:18px 0 36px; animation:fadeIn .4s ease}
+.start-title{font-size:28px; font-weight:800; line-height:1.35; letter-spacing:-.5px; margin:0 0 14px; word-break:keep-all}
+.start-title .hl{color:var(--red)}
+.start-desc{font-size:16px; color:var(--sub); line-height:1.65; margin:0 0 34px; word-break:keep-all}
+.big-btn{background:var(--red); color:#fff; border:none; border-radius:12px; padding:18px 38px; font-size:17px; font-weight:700; cursor:pointer; box-shadow:0 8px 20px rgba(227,0,15,.22); transition:all .25s}
+.big-btn:hover{background:var(--red-dark); transform:translateY(-2px)}
+
+/* question */
+.q-wrap{animation:fadeIn .35s ease}
+.q-step{font-size:13px; font-weight:700; color:var(--red); letter-spacing:.5px; margin-bottom:10px}
+.q-title{font-size:21px; font-weight:800; line-height:1.4; margin:0 0 24px; word-break:keep-all; letter-spacing:-.3px}
+.opts{display:flex; flex-direction:column; gap:12px}
+.opt{background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:16px 18px; font-size:15.5px; font-weight:600; line-height:1.5; cursor:pointer; text-align:left; transition:all .18s; word-break:keep-all; color:var(--text)}
+.opt:hover{border-color:var(--red); background:#fff5f5; transform:translateY(-1px)}
+.opt .tag{display:block; font-size:12.5px; font-weight:500; color:var(--sub); margin-top:4px}
+
+/* result */
+.r-wrap{animation:fadeIn .4s ease; text-align:left}
+.r-head{text-align:center; margin-bottom:6px}
+.r-eyebrow{font-size:14px; color:var(--sub); margin:0 0 6px}
+.r-name{font-size:27px; font-weight:900; letter-spacing:-.5px; margin:0}
+.r-name.sg{color:var(--sg)}
+.r-name.cg{color:var(--cg)}
+.sg-badge{display:inline-block; background:var(--red); color:#fff; font-size:11.5px; font-weight:800; letter-spacing:.6px; border-radius:20px; padding:4px 12px; margin-bottom:8px}
+.r-img{width:200px; height:200px; margin:16px auto; border-radius:14px; background:#f1f3f5 url() center/contain no-repeat; display:flex; align-items:center; justify-content:center; color:#adb5bd; font-size:13px; font-weight:600; overflow:hidden}
+.r-img img{width:100%; height:100%; object-fit:contain; display:block}
+.r-desc{background:#f8f9fa; border-radius:12px; padding:16px 18px; margin:14px 0}
+.r-desc li{font-size:14.5px; line-height:1.65; margin:0 0 8px; word-break:keep-all; color:#343a40}
+.r-desc li:last-child{margin-bottom:0}
+.r-desc ul{margin:0; padding-left:18px}
+.sec{margin:18px 0}
+.sec-t{font-size:14px; font-weight:800; color:var(--text); margin:0 0 10px; text-align:center}
+.chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
+.chip{background:#212529; color:#fff; font-size:12.5px; font-weight:600; border-radius:20px; padding:6px 13px}
+.chip.cert{background:#fff; color:#212529; border:1.5px solid #212529; font-weight:700}
+.cert-marks{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center}
+.cert-mark{display:flex; flex-direction:column; align-items:center; gap:3px}
+.cert-mark img{max-height:46px; max-width:150px; width:auto; height:auto; display:block}
+.cert-mark .cert-cap{font-size:10.5px; color:var(--sub); font-weight:600}
+.colors{font-size:14px; color:#343a40; text-align:center; line-height:1.6}
+.notice{background:#fff8e6; border:1.5px solid #ffd043; border-radius:12px; padding:14px 16px; font-size:13px; line-height:1.65; color:#6b5300; margin:18px 0; word-break:keep-all}
+.notice b{color:#8a6d00}
+.buy-area{display:flex; flex-direction:column; gap:10px; margin:22px 0 4px}
+.buy-btn{display:block; width:100%; border:none; border-radius:12px; padding:16px; font-size:16px; font-weight:800; color:#fff; cursor:pointer; text-decoration:none; text-align:center; transition:all .2s}
+.buy-btn.b2b{background:var(--b2b)} .buy-btn.b2b:hover{background:var(--b2b-dark)}
+.buy-btn.ecom{background:var(--ecom)} .buy-btn.ecom:hover{background:var(--ecom-dark)}
+.buy-btn.event{background:var(--event)} .buy-btn.event:hover{background:var(--red-dark)}
+.retry{background:none; border:none; color:var(--sub); font-size:14px; font-weight:600; text-decoration:underline; cursor:pointer; margin:18px auto 0; display:block}
+
+/* detail page (A+ content) */
+.detail-sec{margin:14px 0 4px}
+.detail-toggle{display:block; width:100%; background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:14px; font-size:15px; font-weight:700; color:var(--text); cursor:pointer; transition:all .18s}
+.detail-toggle:hover{border-color:var(--red); color:var(--red)}
+.detail-body{position:relative; margin-bottom:10px; border-radius:12px; overflow:hidden}
+.detail-body.peek{max-height:420px}
+.detail-body.peek::after{content:''; position:absolute; bottom:0; left:0; right:0; height:130px; background:linear-gradient(rgba(255,255,255,0), #fff 92%); pointer-events:none}
+.detail-body img{width:100%; display:block}
+.detail-placeholder{background:#f1f3f5; border-radius:12px; padding:26px 16px; text-align:center; color:#adb5bd; font-size:13px; font-weight:600}
+
+/* sub product (리얼터치) */
+.sub-card{border:1.5px solid var(--line); border-radius:14px; padding:18px; margin-top:26px}
+.sub-label{font-size:12.5px; font-weight:800; color:var(--sub); letter-spacing:.5px; margin-bottom:6px; text-align:center}
+.sub-card .r-name{font-size:21px}
+
+
+/* ===== 장갑을 맞춰라! 게임 UI ===== */
+.game-title{font-size:30px;font-weight:900;line-height:1.3;letter-spacing:-.7px;margin:0 0 12px;word-break:keep-all}
+.game-title .hl{color:var(--red)}
+.game-desc{font-size:15px;color:var(--sub);line-height:1.7;margin:0 auto 24px;max-width:450px;word-break:keep-all}
+.participant-form{max-width:430px;margin:0 auto;text-align:left}
+.participant-label{display:block;font-size:14px;font-weight:800;margin:0 0 8px}
+.participant-input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:16px 14px;font-size:17px;font-family:inherit;outline:none;background:#fff;color:var(--text)}
+.participant-input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(227,0,15,.08)}
+.participant-help{font-size:12.5px;color:var(--sub);line-height:1.55;margin:8px 0 18px}
+.game-privacy{font-size:11.5px;color:#868e96;line-height:1.55;margin:18px auto 0;max-width:440px;word-break:keep-all}
+.mission-wrap{animation:fadeIn .4s ease}
+.mission-kicker{display:inline-block;font-size:12px;font-weight:900;letter-spacing:1.2px;color:var(--red);background:#fff0f0;padding:7px 11px;border-radius:20px;margin-bottom:10px}
+.mission-title{font-size:25px;font-weight:900;line-height:1.4;margin:0 0 8px;word-break:keep-all}
+.mission-copy{font-size:14px;color:var(--sub);line-height:1.65;margin:0 0 18px;word-break:keep-all}
+.mission-card{border:1.5px solid var(--line);border-radius:16px;padding:20px 16px 18px;margin:0 auto 22px;max-width:390px;background:linear-gradient(180deg,#fff 0%,#fff8f8 100%)}
+.mission-card-label{font-size:12px;font-weight:800;color:var(--sub);margin-bottom:8px}
+.mission-product-name{font-size:22px;font-weight:900;letter-spacing:-.4px;margin:0;word-break:keep-all}
+.mission-product-img{display:block;width:180px;height:180px;object-fit:contain;margin:12px auto 4px}
+.mission-tip{font-size:13px;color:#495057;line-height:1.65;margin:8px auto 0;max-width:420px;word-break:keep-all}
+.game-outcome{text-align:center;border-radius:14px;padding:20px 14px;margin:0 0 20px;word-break:keep-all}
+.game-outcome.win{background:#fff3f3;border:1.5px solid #ffc9c9}
+.game-outcome.lose{background:#f8f9fa;border:1.5px solid var(--line)}
+.game-outcome-kicker{font-size:12px;font-weight:900;letter-spacing:1px;color:var(--red);margin:0 0 8px}
+.game-outcome h2{font-size:25px;font-weight:900;line-height:1.35;margin:0 0 10px}
+.game-outcome p{font-size:15px;line-height:1.7;margin:0}
+.game-target-summary{font-size:13px;color:var(--sub);line-height:1.65;margin:10px 0 0}
+.game-actions{display:flex;flex-direction:column;gap:10px;margin:24px 0 6px}
+.retry-mission-btn{display:block;width:100%;margin:-8px 0 18px}
+.event-urgency{font-size:13px;line-height:1.6;color:#8a3b00;background:#fff8e6;border:1px solid #ffdf91;border-radius:10px;padding:12px 14px;margin:12px 0 0;text-align:center;word-break:keep-all}
+.game-secondary{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px;font-size:14px;font-weight:800;color:var(--text);cursor:pointer}
+.game-secondary:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:480px){.game-title{font-size:26px}.mission-title{font-size:22px}.mission-product-img{width:155px;height:155px}}
+
+@keyframes fadeIn{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+@media (max-width:480px){
+  .container{padding:20px 16px 26px}
+  .start-title{font-size:24px}
+  .q-title{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <img class="logo-img" src="data:image/png;base64,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" alt="3M">
+    <button class="nav-btn hidden" id="homeBtn" onclick="goHome()">처음으로</button>
+  </div>
+  <div id="app">
+  <div class="start-wrap">
+    <div class="hero-marquee"><div class="hero-track"><img src="/images/sg200.png" alt="" onerror="this.remove()"><img src="/images/nocut7.png" alt="" onerror="this.remove()"><img src="/images/cgbasic.png" alt="" onerror="this.remove()"><img src="/images/sgcool.jpg" alt="" onerror="this.remove()"><img src="/images/sghot.jpg" alt="" onerror="this.remove()"><img src="/images/sg100.png" alt="" onerror="this.remove()"><img src="/images/sg200t.png" alt="" onerror="this.remove()"><img src="/images/sgwinter.png" alt="" onerror="this.remove()"><img src="/images/nocut3.png" alt="" onerror="this.remove()"><img src="/images/nocut5.png" alt="" onerror="this.remove()"><img src="/images/cgfit.png" alt="" onerror="this.remove()"><img src="/images/cgair.png" alt="" onerror="this.remove()"><img src="/images/cgwinter.png" alt="" onerror="this.remove()"><img src="/images/cgreal.png" alt="" onerror="this.remove()"><img src="/images/cggimo.png" alt="" onerror="this.remove()"><img src="/images/sg200.png" alt="" onerror="this.remove()"><img src="/images/nocut7.png" alt="" onerror="this.remove()"><img src="/images/cgbasic.png" alt="" onerror="this.remove()"><img src="/images/sgcool.jpg" alt="" onerror="this.remove()"><img src="/images/sghot.jpg" alt="" onerror="this.remove()"><img src="/images/sg100.png" alt="" onerror="this.remove()"><img src="/images/sg200t.png" alt="" onerror="this.remove()"><img src="/images/sgwinter.png" alt="" onerror="this.remove()"><img src="/images/nocut3.png" alt="" onerror="this.remove()"><img src="/images/nocut5.png" alt="" onerror="this.remove()"><img src="/images/cgfit.png" alt="" onerror="this.remove()"><img src="/images/cgair.png" alt="" onerror="this.remove()"><img src="/images/cgwinter.png" alt="" onerror="this.remove()"><img src="/images/cgreal.png" alt="" onerror="this.remove()"><img src="/images/cggimo.png" alt="" onerror="this.remove()"></div></div>
+    <h2 class="start-title">나에게 <span class="hl">딱 맞는</span><br>일반 작업용 장갑 찾기</h2>
+    <p class="start-desc">현재 종사하시는 산업과 작업 환경을 선택하시면,<br>가장 안전하고 편안한 최적의 3M 장갑을 추천해 드립니다.</p>
+    <button class="big-btn" onclick="startTest()">추천 테스트 시작하기</button>
+  </div></div>
+</div>
+
+<script>
+/* ================= 설정 ================= */
+// 채널: URL 파라미터 ?ch= 로 구분 (b2b몰/ecom 임베드, mim, offline QR 등)
+// 예) ?ch=mim  ?ch=ecom  ?ch=offline_dealerA
+const CHANNEL = new URLSearchParams(location.search).get('ch') || 'kzm';
+const IS_OFFLINE = CHANNEL.startsWith('offline');
+
+// 참가 중복 확인용 브라우저 저장소 키
+const PARTICIPANTS_STORAGE_KEY = '3m-glove-game-participants-v1';
+// 원본 HTML에는 이미지 파일이 첨부되지 않아, 원본 가이드의 공개 asset 경로를 사용합니다.
+const ASSET_BASE = '/images/';
+function asset(path){ return ASSET_BASE + path; }
+
+/* ===== 채널별 구매 버튼 구성 =====
+   각 채널에서 노출할 버튼 종류와 순서. 첫 번째가 메인(위쪽) 버튼.
+   판매처가 늘어나면 BUTTON_DEFS에 정의 추가 + 제품 데이터에 링크 필드 추가 + 여기 순서에 넣으면 끝. */
+const BUTTON_DEFS = {
+  b2b:  {label:'B2B몰에서 구매하러 가기', cls:'b2b',  field:'b2b'},
+  ecom: {label:'e-com에서 구매하러 가기', cls:'ecom', field:'ecom'},
+  event:{label:'🎁 이벤트 참여하기',      cls:'event'}
+};
+const CHANNEL_BUTTONS = {
+  ecom:    ['ecom','b2b'],   // ecom 채널: ecom 버튼이 메인
+  mim:     ['b2b','ecom'],   // 몰인몰: B2B 메인
+  b2b:     ['b2b'],
+  offline: ['event'],        // 오프라인(QR): 이벤트 버튼만
+  default: ['b2b','ecom']    // 그 외(direct, review 등)
+};
+function channelButtons(){
+  if(IS_OFFLINE) return CHANNEL_BUTTONS.offline;
+  return CHANNEL_BUTTONS[CHANNEL] || CHANNEL_BUTTONS.default;
+}
+
+// 상세페이지(에이플러스) 파일 목록 — build_deploy.py 실행 시 자동 주입됨. {} 이면 플레이스홀더 표시
+const DETAIL_FILES = {"sg100": ["1.webp", "2.gif", "3.gif", "4.webp", "5.gif", "6.webp", "7.gif", "8.webp", "9.webp", "10.webp", "11.webp"], "sg200": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp"], "sg200t": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp", "16.webp"], "nocut3": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp"], "nocut5": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp"], "nocut7": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp", "16.webp"], "sgwinter": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp"], "sgcool": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp", "15.webp", "16.webp", "17.webp", "18.webp", "19.webp", "20.webp", "21.webp"], "sghot": ["1.webp", "2.webp", "3.webp"], "cgbasic": ["1.webp", "2.gif", "3.gif", "4.gif", "5.gif", "6.gif", "7.gif", "8.gif", "9.webp", "10.webp"], "cgreal": ["1.webp", "2.webp", "3.webp", "4.gif", "5.webp", "6.webp", "7.webp", "8.webp", "9.gif", "10.webp", "11.webp", "12.webp", "13.webp"], "cgair": ["1.webp", "2.webp", "3.webp", "4.webp"], "cgwinter": ["1.webp", "2.webp", "3.webp", "4.webp"], "cgfit": ["1.webp", "2.gif", "3.gif", "4.gif", "5.gif", "6.gif", "7.gif", "8.webp", "9.webp", "10.webp"], "cggimo": ["1.webp", "2.webp", "3.webp", "4.gif", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp"]};
+
+// 트래킹 엔드포인트 (Cloudflare Worker 배포 후 URL 입력. 비워두면 콘솔 로그만)
+const TRACKING_ENDPOINT = 'https://glove-tracking.dr78home.workers.dev/';
+
+// 이벤트 참여 폼 URL (오프라인 버전, 추후 확정)
+const EVENT_URL = '';
+
+function track(ev, data){
+  const payload = {ev, ch:CHANNEL, t:Date.now(), ...data};
+  if(TRACKING_ENDPOINT){
+    try{ navigator.sendBeacon(TRACKING_ENDPOINT, JSON.stringify(payload)); }catch(e){}
+  }
+  console.log('[track]', payload);
+}
+
+/* ================= 제품 데이터 (3M 제작요청서 26.08 기준) ================= */
+const P = {
+  sg100:{brand:'sg', name:'슈퍼그립 100',
+    desc:['슈퍼그립의 편안함과 가성비를 동시에 제공하는 다용도 NBR 장갑','개선된 원사를 적용하여 경량화 및 작업성 향상'],
+    certs:['EN388 4X21A','ANSI A1','CE인증'],
+    uses:['산업 및 안전 현장','일반 및 레저 활동'],
+    funcs:['통기성','경량성'],
+    colors:'회색, 블루',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710113250', ecom:''},
+  sg200:{brand:'sg', name:'슈퍼그립 200',
+    desc:['누적 판매량 1억장을 돌파한 명실상부한 작업용 NBR 장갑의 대표 제품','스판덱스 원사를 적용하여 최상의 착용감과 작업성을 보장하는 최고의 NBR장갑','우수한 형상기억 특성과 통기성을 갖춘 원단으로 장시간 작업에도 피로도 최소화'],
+    certs:['EN388 4X31A','ANSI A1','CE인증','더마테스트','오코텍스 스탠다드 100'],
+    uses:['차량 정비 및 관리','기계 부품 작업','정밀 부품 조립'],
+    funcs:['그립력','내구성','통기성','밀착감','유연성'],
+    colors:'오렌지, 핑크, 그린, 민트, 회색, 진회색, 검정',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709188897', ecom:''},
+  sg200t:{brand:'sg', name:'슈퍼그립 200 터치',
+    desc:['슈퍼그립 200의 착용감 그대로 터치 성능을 강화한 프리미엄 NBR 장갑','외부 코팅이 아닌 도전성 원사를 적용해 작업 중 마찰에도 터치 성능 저하 방지','터치기기 사용과 메시지 입력시 장갑 착용 상태에서 편리한 조작 가능'],
+    certs:['EN388 4X31A','ANSI A1','CE인증'],
+    uses:['스마트 기기 조작 작업 환경'],
+    funcs:['전도성(터치)','그립력','내구성','통기성'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709189116', ecom:''},
+  sgcool:{brand:'sg', name:'슈퍼그립 쿨',
+    desc:['UV차단, 통기성, 냉감성을 극대화한 NY-SHELRON® 원단이 적용된 장갑','얇지만 강력한 내구성으로 장시간 시원한 착용감 제공','탁월한 그립력과 통기성으로 더욱 쾌적하고 편안한 작업성 보장'],
+    certs:['EN388 4X21A','ANSI A1','CE인증','NY-SHELRON®'],
+    uses:['한여름 작업 환경'],
+    funcs:['UV 차단','통기성','냉감성','흡한속건'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710303682', ecom:''},
+  sgwinter:{brand:'sg', name:'슈퍼그립 윈터',
+    desc:['겨울 작업에 최적화된 보온 기능성 장갑','기모와 플리스 소재를 사용하여 부드럽고 포근한 착용감을 제공','신축성 있는 소재와 손목 밀착 설계로 편안한 착용감과 뛰어난 보온성 유지'],
+    certs:['EN388 4X21A','ANSI A1','CE인증'],
+    uses:['겨울 작업 환경'],
+    funcs:['유연성','보온성','그립력','밀착감'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710181359', ecom:''},
+  sghot:{brand:'sg', name:'슈퍼그립 핫',
+    desc:['뛰어난 보온성과 우수한 작업성을 갖춘 겨울용 장갑','균일하게 기모 처리된 내피로 탁월한 보온성과 부드러운 착용감 제공','겨울 장갑임에도 슈퍼그립 특유의 뛰어난 그립감으로 작업성이 우수함'],
+    certs:['EN388 2X41B','ANSI A2','CE인증'],
+    uses:['혹한기 작업 환경'],
+    funcs:['보온성','내한성','그립력'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710851970', ecom:''},
+  nocut3:{brand:'sg', name:'슈퍼그립 노컷3', nocut:true,
+    desc:['EN388:2016 버전 B등급과 ANSI 등급 2 인증을 받은 고성능 베임방지 기능성 장갑','강철보다 15배 강력한 Dyneema® 원사 적용으로 고강도 절단 저항성 확보','베임방지 기능성 장갑이지만, 경량화와 편안한 착용감으로 작업 효율성 증대'],
+    certs:['EN388 4X43B','ANSI A2','CE인증','Dyneema®'],
+    uses:['베임 위험이 있는 작업 환경'],
+    funcs:['베임 방지','경량성','그립력'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709189781', ecom:''},
+  nocut5:{brand:'sg', name:'슈퍼그립 노컷5', nocut:true,
+    desc:['EN388:2016 버전 E등급과 ANSI 등급 5 인증을 받은 고성능 베임방지 기능성 장갑','강철보다 15배 강력한 Dyneema® 원사 적용으로 고강도 절단 저항성 확보','절단작업이나 날카로운 자재를 취급하는 작업에 적합'],
+    certs:['EN388 4X43E','ANSI A5','CE인증','Dyneema®'],
+    uses:['베임 위험이 있는 작업 환경'],
+    funcs:['베임 방지','내구성','그립력'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709191498', ecom:''},
+  nocut7:{brand:'sg', name:'슈퍼그립 노컷7', nocut:true,
+    desc:['EN388:2016 버전 F등급과 ANSI 등급 7 인증을 받은 고성능 베임방지 기능성 장갑','방탄복에도 적용되는 초고분자량 폴리에틸렌(UHMWPE) 재질의 원사와 텅스텐 원사를 함께 적용하여 절단방지 성능 업그레이드'],
+    certs:['EN388 4X43F','ANSI A7','CE인증'],
+    uses:['베임 위험이 있는 작업 환경'],
+    funcs:['베임 방지','내구성','그립력','정밀작업','밀착감'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1787104454', ecom:''},
+  cgbasic:{brand:'cg', name:'컴포트그립 기본형',
+    desc:['내 손처럼 자유로운 움직임을 구현한 다용도 장갑','땀은 배출하고 공기는 유입하는 우수한 통기성으로 착용 내내 쾌적함 유지','내구성이 뛰어나 세탁 후에도 반복 사용 가능'],
+    certs:['EN388 3X31A','ANSI A1'],
+    uses:['일반작업','조립/부품 작업','제조 및 건설 관련 사업'],
+    funcs:['착용감','유연성','통기성','내구성'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710255799', ecom:''},
+  cgfit:{brand:'cg', name:'컴포트그립 핏',
+    desc:['손에 딱 맞는 착용감과 뛰어난 신축성을 바탕으로 정밀 작업에 최적화된 장갑','스판덱스와 고신축 폴리에스터 소재를 사용하여 편안한 착용감을 제공','가벼운 소재와 유연한 구조로 장시간 작업에도 편안함'],
+    certs:['EN388 4X21A','ANSI A1'],
+    uses:['차량 정비 및 관리','기계 부품 작업','정밀 부품 조립'],
+    funcs:['정밀작업','경량성','밀착감'],
+    colors:'검정, 회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709343734', ecom:''},
+  cgair:{brand:'cg', name:'컴포트그립 에어',
+    desc:['더운 작업 환경이나 장시간 사용에 이상적인 장갑','장시간 착용에도 쾌적한 착용감','가볍고 통기성이 뛰어난 소재로 땀 차지 않는 산뜻함'],
+    certs:['EN388 3X21A','ANSI A1'],
+    uses:['한여름 정밀 작업 환경'],
+    funcs:['통기성','경량성','정밀작업'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710844064', ecom:''},
+  cgwinter:{brand:'cg', name:'컴포트그립 윈터',
+    desc:['한겨울 추위에도 따뜻하고 편안한 겨울용 장갑','우수한 통기성과 방풍성이 뛰어나 따뜻한 온도를 지속적으로 유지'],
+    certs:[], /* 인증서 없음 (3M 확인 26.08) */
+    uses:['다용도 작업 환경'],
+    funcs:['보온성','착용감'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710401288', ecom:''},
+  cgreal:{brand:'cg', name:'컴포트그립 리얼터치',
+    desc:['한겨울 추위에도 터치가 가능한 실용적인 겨울용 장갑','따뜻한 기모 원사가 적용되어 손끝까지 보온 효과 제공','다섯 손가락 모두 장갑을 벗지 않고 스마트 기기 조작 가능'],
+    certs:['EN388 2X21A','ANSI A1'],
+    uses:['스마트 기기 조작 환경'],
+    funcs:['전도성(터치)','보온성'],
+    colors:'검정, 회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1709989859', ecom:''},
+  cggimo:{brand:'cg', name:'컴포트그립 혹한기기모',
+    desc:['강력한 보온성과 방풍성을 갖춘 혹한기용 장갑','차가운 공기의 유입을 막아주어 추운 날씨에도 안정적인 보온 효과를 제공','따뜻한 기모 원사와 보온성이 뛰어난 플리스 소재가 적용되어 손끝 시림 방지'],
+    certs:['EN388 2X41B','ANSI A2'],
+    uses:['혹한기 작업 환경'],
+    funcs:['착용감','보온성','내한성'],
+    colors:'회색',
+    b2b:'https://mmmb2bmall.co.kr/content/product/view?ca_id=10&ca_id2=1040&it_id=1710519483', ecom:''}
+};
+
+/* ================= 질문 트리 (3M 제작요청서 확정안) ================= */
+const T = {
+  industry:{step:'STEP 1', q:'현재 주로 종사하시는 산업군이나\n작업 현장은 어디인가요?', opts:[
+    {label:'물류 / 유통', tag:'택배, 운송, 창고, MRO 등', next:'logi'},
+    {label:'건설 / 토목', tag:'건축 현장, 전기, 설비 등', next:'const'},
+    {label:'일반 산업 / 일상', tag:'제조, 농업, DIY, 캠핑 등', next:'general'},
+    {label:'중공업 / 안전', tag:'금속 가공, 베임 방지, 안전 관리 등', next:'heavy'}
+  ]},
+  logi:{step:'STEP 2', q:'[물류/유통] 작업 중 가장 많이 겪는 상황이나\n필요한 기능은 무엇인가요?', opts:[
+    {label:'야외 하역이나 냉동창고 작업 등 고온/저온 환경', next:'r1'},
+    {label:'박스 해체, 커터칼 사용 등 베임 방지 기능', next:'r2'},
+    {label:'일반적인 상하차 및 박스 운반 등 거친 작업', next:'r3'}
+  ]},
+  const:{step:'STEP 2', q:'[건설/토목] 현장에서 가장 우선적으로\n대비해야 하는 요소는 무엇인가요?', opts:[
+    {label:'철근, 유리 등으로부터의 강한 베임 위험', next:'r2'},
+    {label:'폭염이나 혹한 등 극심한 날씨 변화', next:'r1'},
+    {label:'도면 확인, 정밀 작업 등 세밀한 손끝 감각', next:'r3'},
+    {label:'벽돌, 시멘트 등을 다루는 강도 높은 거친 작업', next:'r3'}
+  ]},
+  general:{step:'STEP 2', q:'[일반/일상] 작업의 주요 특징이나\n가장 중요하게 생각하는 점은 무엇인가요?', opts:[
+    {label:'야외 작업이나 캠핑 등 계절(온도)의 영향을 많이 받음', next:'r1'},
+    {label:'기계 조립, 부품 체결 등 얇은 밀착감과 맨손 같은 느낌', next:'r3'},
+    {label:'유리, 철판 등 베임 위험 방지', next:'r2'},
+    {label:'공방, DIY, 레저 등 일상 다목적 장갑', next:'r3'}
+  ]},
+  heavy:{step:'STEP 2', q:'[중공업/안전] 안전과 작업 효율을 위해\n가장 필수적인 기능은 무엇인가요?', opts:[
+    {label:'금속 가공 등 베임 방지', next:'r2'},
+    {label:'극저온/고온 환경이나 야외 작업이 잦음', next:'r1'},
+    {label:'내구성과 그립력', next:'r3'}
+  ]},
+  /* Route 1. Seasonal */
+  r1:{step:'STEP 3', q:'주로 어떤 계절 혹은 기온에서\n작업하시나요?', opts:[
+    {label:'여름철 야외 혹은 고온의 땀이 많이 나는 환경', next:'r1_summer'},
+    {label:'일반적인 겨울철 야외 현장', next:'r1_winter'},
+    {label:'혹한기 겨울 혹은 냉동창고 등의 극저온 환경', next:'r1_cold'}
+  ]},
+  r1_summer:{step:'STEP 4', q:'어떤 소재의 장갑을 선호하시나요?', opts:[
+    {label:'특수 냉감 소재로 땀이 차도 즉각적인 쿨링 효과', result:'sgcool'},
+    {label:'얇은 소재로 산뜻한 통기성', result:'cgair'}
+  ]},
+  r1_winter:{step:'STEP 4', q:'겨울용 장갑에서 더 중시하는\n성능은 무엇인가요?', opts:[
+    {label:'두툼하고 푹신한 방한력', result:'cgwinter'},
+    {label:'적절한 방한력과, 스판 소재로 둔탁함 없이 쫀쫀한 밀착감 보유', result:'sgwinter'}
+  ]},
+  r1_cold:{step:'STEP 4', q:'혹한기용 장갑에서 어떤 착용감을\n선호하시나요?', opts:[
+    {label:'두꺼운 둔탁함 없이 손에 감기는 정밀한 밀착감', result:'sghot'},
+    {label:'두툼하게 한기를 막아주는 편안한 쿠션감', result:'cggimo'}
+  ]},
+  /* Route 2. No Cut */
+  r2:{step:'STEP 3', q:'작업 중 마주하시는 베임 위험 수준은\n어느 정도인가요?', opts:[
+    {label:'일반 커터칼이나 긁힘 수준', result:'nocut3'},
+    {label:'가정용 부엌칼이나 얇은 철판 단면 수준', result:'nocut5'},
+    {label:'공업용 커터 수준', result:'nocut7'}
+  ]},
+  /* Route 3. General */
+  r3:{step:'STEP 3', q:'작업 중, 스마트기기 화면을 터치해야 할 일이\n잦으신가요?', opts:[
+    {label:'네, 수시로 화면을 확인하고 조작해야 해요.', result:'sg200t'},
+    {label:'아니요, 굳이 필요하지 않아요.', next:'r3_feel'}
+  ]},
+  r3_feel:{step:'STEP 4', q:'장갑을 착용했을 때\n어떤 느낌을 더 선호하시나요?', opts:[
+    {label:'손의 압박감을 덜어주는 여유로운 핏', next:'r3_loose'},
+    {label:'손에 꽉 맞아 헛돌지 않고 쫀쫀한 밀착감', next:'r3_tight'}
+  ]},
+  r3_loose:{step:'STEP 5', q:'작업 효율을 극대화할 원단(소재)의 특성 중\n어떤 것을 선호하시나요?', opts:[
+    {label:'[폴리+스판] 유연하게 늘어나 답답함 없이 가벼운 신축성 원단', result:'cgfit'},
+    {label:'[100% 나일론] 거친 마찰에도 손을 든든하게 보호하는 탄탄한 원단', result:'cgbasic'}
+  ]},
+  r3_tight:{step:'STEP 5', q:'작업 효율을 극대화할 원단(소재)의 특성 중\n어떤 것을 선호하시나요?', opts:[
+    {label:'[100% 폴리에스터] 소모가 빠른 현장에서 가볍게 쓰기 좋은 실용적 원단', result:'sg100'},
+    {label:'[나일론+스판덱스] 질긴 내구성과 빈틈없는 핏을 동시에 잡은 고탄성 원단', result:'sg200'}
+  ]}
+};
+
+/* 인증서 마크 이미지 파일명 매핑 — images/certs/ 폴더에 파일 넣으면 자동으로 마크 표시, 없으면 텍스트 뱃지 폴백 */
+function certFileId(label){
+  const map = {'CE인증':'ce','더마테스트':'dermatest','오코텍스 스탠다드 100':'oekotex100','NY-SHELRON®':'nyshelron','Dyneema®':'dyneema'};
+  if(map[label]) return map[label];
+  return label.toLowerCase().replace(/®/g,'').replace(/\s+/g,'_'); // EN388 4X31A → en388_4x31a, ANSI A1 → ansi_a1
+}
+function certMark(label){
+  const id = certFileId(label);
+  return `<span class="cert-mark">
+    <img src="${asset('certs/'+id+'.png')}" alt="${esc(label)}"
+      onerror="this.closest('.cert-mark').outerHTML='<span class=&quot;chip cert&quot;>${esc(label)}</span>'">
+    <span class="cert-cap">${esc(label)}</span>
+  </span>`;
+}
+
+const NOCUT_NOTICE = '⚠️ 3M 베임방지 장갑은 상해를 줄여주는 <b>보조 보호구</b>이며, 기계나 톱날을 완벽히 막아내는 절단/끼임 방지용 장비가 아니므로 안전에 유의하여 사용해 주세요.';
+
+/* ================= 렌더링 ================= */
+const app = document.getElementById('app');
+const homeBtn = document.getElementById('homeBtn');
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function nl(s){return esc(s).replace(/\n/g,'<br>')}
+
+const HERO_LIST = ['sg200.png','nocut7.png','cgbasic.png','sgcool.jpg','sghot.jpg','sg100.png','sg200t.png','sgwinter.png','nocut3.png','nocut5.png','cgfit.png','cgair.png','cgwinter.png','cgreal.png','cggimo.png'];
+function heroImgs(){
+  const one = HERO_LIST.map(f=>`<img src="${asset(f)}" alt="" onerror="this.remove()">`).join('');
+  return one + one; // 동일 세트 2회 → translateX(-50%) 무한 루프
+}
+
+let participantName = '';
+let participantTail = '';
+let participantCode = '';
+let targetPid = null;
+
+// 선택 가이드에서 최종 결과로 도달할 수 있는 제품만 미션 대상으로 사용합니다.
+const GAME_TARGETS = ['sgcool','cgair','cgwinter','sgwinter','sghot','cggimo','nocut3','nocut5','nocut7','sg200t','cgfit','cgbasic','sg100','sg200'];
+
+function renderStart(){
+  participantName = '';
+  participantTail = '';
+  participantCode = '';
+  targetPid = null;
+  updateNav(null);
+  app.innerHTML = `
+  <div class="start-wrap">
+    <div class="hero-marquee"><div class="hero-track">${heroImgs()}</div></div>
+    <div class="mission-kicker">3M GLOVE CHALLENGE</div>
+    <h1 class="game-title">장갑을 <span class="hl">맞춰라!</span></h1>
+    <p class="game-desc">참가자 정보를 입력한 뒤 랜덤으로 제시되는 장갑을 확인하세요.<br>셀렉션 가이드의 질문에 답하고, 추천 결과가 제시된 장갑과 일치하면 미션 성공입니다. 선착순으로 상품이 증정되며, 재고 소진 시 조기 마감될 수 있습니다.</p>
+    <form class="participant-form" onsubmit="event.preventDefault(); beginMission();">
+      <label class="participant-label" for="participantCode">이름 + 전화번호 뒤 4자리</label>
+      <input class="participant-input" id="participantCode" name="participantCode" type="text" maxlength="30" autocomplete="off" placeholder="예: 김삼엠1234" required>
+      <p class="participant-help">이름 뒤에 전화번호 끝 4자리를 붙여 입력해 주세요. 예: 김삼엠1234</p>
+      <button class="big-btn" type="submit" style="width:100%">참가하기</button>
+    </form>
+    <p class="game-privacy">중복 참여 방지를 위해 입력한 이름과 전화번호 뒤 4자리를 이 브라우저에 저장합니다. 서버로 전송되지는 않으며, 다른 기기와는 참가 기록이 공유되지 않습니다.</p>
+  </div>`;
+}
+
+function normalizeParticipantCode(value){
+  return String(value || '').normalize('NFC').replace(/\s+/g, '').toLocaleLowerCase('ko-KR');
+}
+
+function readParticipantRegistry(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(PARTICIPANTS_STORAGE_KEY) || '[]');
+    return {ok:true, entries:Array.isArray(saved) ? saved : []};
+  }catch(e){
+    return {ok:false, entries:[]};
+  }
+}
+
+function hasParticipant(entries, code){
+  const key = normalizeParticipantCode(code);
+  return entries.some(entry => {
+    const savedCode = typeof entry === 'string' ? entry : entry?.code;
+    return normalizeParticipantCode(savedCode) === key;
+  });
+}
+
+function registerParticipant(code){
+  const registry = readParticipantRegistry();
+  if(!registry.ok) return {ok:false, reason:'storage'};
+  if(hasParticipant(registry.entries, code)) return {ok:false, reason:'duplicate'};
+  registry.entries.push({
+    code: normalizeParticipantCode(code),
+    registeredAt: new Date().toISOString()
+  });
+  try{
+    localStorage.setItem(PARTICIPANTS_STORAGE_KEY, JSON.stringify(registry.entries));
+    // 저장 결과를 다시 읽어 실제로 기록되었는지 확인합니다.
+    const verify = readParticipantRegistry();
+    if(!verify.ok || !hasParticipant(verify.entries, code)) return {ok:false, reason:'storage'};
+    return {ok:true};
+  }catch(e){
+    return {ok:false, reason:'storage'};
+  }
+}
+
+function beginMission(){
+  const input = document.getElementById('participantCode');
+  const raw = (input?.value || '').trim().replace(/\s+/g, '');
+  const match = raw.match(/^(.+?)(\d{4})$/);
+  if(!match || !match[1].trim()){
+    alert('이름 뒤에 전화번호 뒤 4자리를 붙여 입력해 주세요. 예: 김삼엠1234');
+    input?.focus();
+    return;
+  }
+
+  const normalizedCode = match[1] + match[2];
+  const registry = readParticipantRegistry();
+  if(!registry.ok){
+    alert('이 브라우저에서 참가 기록을 확인할 수 없습니다. 브라우저의 사이트 데이터 저장이 허용된 환경에서 다시 열어 주세요.');
+    return;
+  }
+  if(hasParticipant(registry.entries, normalizedCode)){
+    alert('이미 참가한 정보입니다. 한 사람당 한 번만 참여할 수 있습니다.');
+    input?.focus();
+    input?.select();
+    return;
+  }
+
+  const registered = registerParticipant(normalizedCode);
+  if(!registered.ok){
+    if(registered.reason === 'duplicate'){
+      alert('이미 참가한 정보입니다. 한 사람당 한 번만 참여할 수 있습니다.');
+    }else{
+      alert('참가 기록을 저장하지 못해 중복 확인을 할 수 없습니다. 브라우저의 사이트 데이터 저장 설정을 확인해 주세요.');
+    }
+    return;
+  }
+
+  participantName = match[1];
+  participantTail = match[2];
+  participantCode = participantName + participantTail;
+  targetPid = GAME_TARGETS[Math.floor(Math.random() * GAME_TARGETS.length)];
+  track('mission_assigned', {target:targetPid});
+  renderMission();
+}
+
+function renderMission(){
+  updateNav('MISSION');
+  const p = P[targetPid];
+  if(!p){ renderStart(); return; }
+  app.innerHTML = `
+  <div class="mission-wrap">
+    <div class="mission-kicker">MISSION START</div>
+    <h1 class="mission-title">${esc(participantName)}님, 오늘의 미션 장갑입니다</h1>
+    <p class="mission-copy">아래 장갑을 확인한 뒤 셀렉션 가이드 질문에 답해 주세요. 최종 추천 장갑이 이 제품과 같으면 성공입니다.</p>
+    <div class="mission-card">
+      <div class="mission-card-label">이번에 맞혀야 할 장갑</div>
+      <h2 class="mission-product-name">${esc(p.name)}</h2>
+      <img class="mission-product-img" src="${asset(targetPid+'.png')}" alt="${esc(p.name)}" onerror="if(!this.dataset.j){this.dataset.j=1;this.src='${asset(targetPid+'.jpg')}';}else{this.style.display='none';}">
+    </div>
+    <button class="big-btn" onclick="startTest()">장갑 맞히기 시작</button>
+  </div>`;
+  window.scrollTo({top:0});
+}
+
+function startTest(){
+  if(!targetPid){ renderStart(); return; }
+  track('start');
+  goNode('industry');
+}
+
+function goNode(id){
+  updateNav(id);
+  const node = T[id];
+  app.innerHTML = `
+  <div class="q-wrap">
+    <div class="q-step">${node.step}</div>
+    <h2 class="q-title">${nl(node.q)}</h2>
+    <div class="opts">
+      ${node.opts.map((o,i)=>`
+        <button class="opt" onclick="choose('${id}',${i})">${esc(o.label)}${o.tag?`<span class="tag">${esc(o.tag)}</span>`:''}</button>
+      `).join('')}
+    </div>
+  </div>`;
+  window.scrollTo({top:0});
+}
+
+function choose(nodeId, idx){
+  const opt = T[nodeId].opts[idx];
+  track('answer', {node:nodeId, pick:idx});
+  if(opt.result) showResult(opt.result);
+  else goNode(opt.next);
+}
+
+function buyButtons(p, pid){
+  let html = '';
+  for(const key of channelButtons()){
+    const d = BUTTON_DEFS[key];
+    if(!d) continue;
+    if(key === 'event'){
+      html += `<a class="buy-btn event" href="${EVENT_URL||'#'}" onclick="track('event_click',{p:'${pid}'})">${d.label}</a>`;
+    } else {
+      const link = p[d.field];
+      if(link) html += `<a class="buy-btn ${d.cls}" href="${link}" target="_blank" rel="noopener" onclick="track('buy_click',{p:'${pid}',mall:'${key}'})">${d.label}</a>`;
+    }
+  }
+  return html;
+}
+
+function productBlock(pid, isSub=false){
+  const p = P[pid];
+  const sg = p.brand === 'sg';
+  return `
+  ${isSub ? `<div class="sub-label">함께 추천드리는 제품</div>` : ''}
+  <div class="r-head">
+    ${!isSub ? `<p class="r-eyebrow">고객님의 현장과 작업에 가장 완벽한 장갑은</p>` : ''}
+    ${sg && !isSub ? `<div><span class="sg-badge">3M BEST SELLER</span></div>` : ''}
+    <h2 class="r-name ${p.brand}">${esc(p.name)}</h2>
+  </div>
+  <div class="r-img" data-pid="${pid}">
+    <img src="${asset(pid+'.png')}" alt="${esc(p.name)}"
+      onerror="if(!this.dataset.j){this.dataset.j=1;this.src='${asset(pid+'.jpg')}';}else{this.parentNode.textContent='제품 이미지 준비 중';}">
+  </div>
+  <div class="r-desc"><ul>${p.desc.map(d=>`<li>${esc(d)}</li>`).join('')}</ul></div>
+  ${p.certs.length ? `<div class="sec"><p class="sec-t">인증서</p><div class="cert-marks">${p.certs.map(c=>certMark(c)).join('')}</div></div>` : ''}
+  <div class="sec"><p class="sec-t">작업 용도</p><div class="chips">${p.uses.map(u=>`<span class="chip">${esc(u)}</span>`).join('')}</div></div>
+  <div class="sec"><p class="sec-t">기능</p><div class="chips">${p.funcs.map(f=>`<span class="chip">${esc(f)}</span>`).join('')}</div></div>
+  <div class="sec"><p class="sec-t">제품 색상</p><p class="colors">${esc(p.colors)}</p></div>
+  ${p.nocut ? `<div class="notice">${NOCUT_NOTICE}</div>` : ''}
+  ${detailSection(pid)}`;
+}
+
+function detailSection(pid){
+  const files = DETAIL_FILES[pid];
+  if(files === undefined && Object.keys(DETAIL_FILES).length === 0){
+    // 빌드 전 검수용: 위치만 표시
+    return `<div class="detail-sec"><div class="detail-placeholder">상세페이지 영역 — 배포 버전에서 표시됩니다</div></div>`;
+  }
+  if(!files || !files.length) return '';
+  let imgs = '';
+  files.forEach((f,i)=>{ imgs += `<img src="${asset('detail/'+pid+'/'+f)}" ${i>0?'loading="lazy"':''} alt="">`; });
+  return `<div class="detail-sec">
+    <div class="detail-body peek">${imgs}</div>
+    <button class="detail-toggle" onclick="toggleDetail(this,'${pid}')">상세정보 더보기 ▾</button>
+  </div>`;
+}
+function toggleDetail(btn, pid){
+  const body = btn.previousElementSibling;
+  const open = !body.classList.toggle('peek');
+  btn.innerHTML = open ? '상세정보 접기 ▴' : '상세정보 더보기 ▾';
+  if(open) track('detail_open', {p:pid});
+  else body.closest('.detail-sec').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function showResult(pid){
+  updateNav('RESULT');
+  const won = pid === targetPid;
+  track('result', {p:pid, target:targetPid, won});
+  const targetName = P[targetPid]?.name || '제시된 장갑';
+  const resultName = P[pid]?.name || '추천 장갑';
+  let html = `<div class="r-wrap">`;
+  if(won){
+    html += `<div class="game-outcome win">
+      <p class="game-outcome-kicker">MISSION CLEAR</p>
+      <h2>축하드립니다, ${esc(participantName)}님!</h2>
+      <p>제시된 장갑과 추천 결과가 일치했습니다.<br><b>상품 타가세요!</b></p>
+      <p class="game-target-summary">참가자: ${esc(participantCode)}<br>미션 정답: ${esc(targetName)}</p>
+    </div>`;
+  } else {
+    html += `<div class="game-outcome lose">
+      <p class="game-outcome-kicker">MISSION FAILED</p>
+      <h2>아쉽습니다!</h2>
+      <p>이번 추천 결과는 제시된 장갑과 다릅니다.<br>같은 장갑으로 다시 도전해 보세요.</p>
+      <p class="game-target-summary">참가자: ${esc(participantCode)}<br>미션 장갑: <b>${esc(targetName)}</b><br>추천 결과: <b>${esc(resultName)}</b></p>
+      <p class="event-urgency">선착순으로 상품이 증정되며, 재고 소진 시 조기 마감될 수 있습니다.</p>
+    </div>
+    <button class="big-btn retry-mission-btn" onclick="retrySameMission()">같은 장갑으로 다시 도전하기</button>`;
+  }
+  html += productBlock(pid);
+  // 기존 가이드의 보조 추천 제품 노출 규칙은 그대로 유지합니다.
+  if(pid === 'cgwinter'){
+    track('result_sub', {p:'cgreal'});
+    html += `<div class="sub-card">${productBlock('cgreal', true)}</div>`;
+  }
+  html += `<div class="game-actions">
+    ${won ? '<button class="big-btn" onclick="retrySameMission()">같은 장갑으로 다시 도전하기</button>' : ''}
+    <button class="game-secondary" onclick="goHome()">처음으로 돌아가기</button>
+  </div></div>`;
+  app.innerHTML = html;
+  window.scrollTo({top:0});
+}
+
+function retrySameMission(){
+  if(!targetPid){ renderStart(); return; }
+  track('retry', {target:targetPid});
+  goNode('industry');
+}
+
+function updateNav(cur){
+  // 이전 버튼은 제거하고, 미션 진행 중에만 '처음으로' 버튼을 표시합니다.
+  homeBtn.classList.toggle('hidden', !targetPid);
+}
+
+function goHome(){ renderStart(); }
+
+renderStart();
+track('pageview');
+</script>
+
+
+</body></html>
